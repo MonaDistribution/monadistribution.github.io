@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bon de commande - Mona Distribution</title>
+
+    <style>
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #f4f5f6;
+            color: #1f2937;
+        }
+
+        .bon {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .header {
+            border-bottom: 3px solid #111;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .numero {
+            font-weight: bold;
+        }
+
+        .client {
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f3f3f3;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .commentaire {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f5f5f5;
+        }
+
+        .print-button {
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .bon {
+        width: 100%;
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .client {
+        font-size: 15px;
+    }
+
+    table {
+        font-size: 13px;
+        table-layout: fixed;
+    }
+
+    th, td {
+        padding: 10px 4px;
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+        width: 27%;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+        width: 16%;
+        text-align: center;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 31%;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+        width: 26%;
+    }
+
+    .total {
+        font-size: 20px;
+    }
+}
+
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .bon {
+                max-width: none;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="bon">
+
+    <div class="header">
+        <h1>MONA DISTRIBUTION</h1>
+        <div>BON DE COMMANDE</div>
+        <div class="numero" id="numero-commande" style="margin-top: 6px;"></div>
+    </div>
+
+    <div class="client" id="client-info"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Conditionnement</th>
+                <th>Total HT</th>
+            </tr>
+        </thead>
+
+        <tbody id="produits"></tbody>
+    </table>
+
+    <div class="total" id="total"></div>
+
+    <div class="commentaire" id="commentaire"></div>
+
+    <button class="print-button" onclick="window.print()">
+        Imprimer / Enregistrer en PDF
+    </button>
+
+</div>
+
+<script>
+    const commande = JSON.parse(localStorage.getItem("derniereCommande"));
+
+    if (!commande) {
+        document.body.innerHTML = "<h2>Aucune commande disponible.</h2>";
+    } else {
+
+        document.getElementById("numero-commande").textContent =
+            "N° " + commande.numero;
+
+        document.getElementById("client-info").innerHTML = `
+            <strong>Société :</strong> ${commande.company}<br>
+            <strong>SIRET :</strong> ${commande.siret}<br>
+            <strong>Client :</strong> ${commande.name}<br>
+            <strong>Téléphone :</strong> ${commande.phone}<br>
+            <strong>Livraison :</strong> ${commande.address}, ${commande.postal} ${commande.city}
+        `;
+
+        const produits = document.getElementById("produits");
+
+        commande.cart.forEach(item => {
+
+            const ligne = document.createElement("tr");
+
+            ligne.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td>${item.packagingType} × ${item.packagingQty}</td>
+                <td>${item.lineTotal.toFixed(2).replace(".", ",")} €</td>
+            `;
+
+            produits.appendChild(ligne);
+        });
+
+        document.getElementById("total").textContent =
+            "TOTAL HT : " +
+            commande.total.toFixed(2).replace(".", ",") +
+            " €";
+
+        if (commande.comment) {
+            document.getElementById("commentaire").innerHTML =
+                "<strong>Commentaire :</strong><br>" + commande.comment;
+        } else {
+            document.getElementById("commentaire").style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

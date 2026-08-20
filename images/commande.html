@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Validation de commande - Mona Distribution</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f5f6;
+            color: #1f2937;
+        }
+
+        .page {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            margin-top: 0;
+            margin-bottom: 28px;
+            color: #6b7280;
+        }
+
+        h2 {
+            font-size: 19px;
+            margin-top: 28px;
+            margin-bottom: 15px;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #0b8f72;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        #order-summary {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+        #order-items > div {
+    padding: 8px 0 14px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#order-items > div:first-child {
+    padding-top: 0;
+}
+
+#order-items > div:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+#order-items strong {
+    display: block;
+    margin-bottom: 1px;
+}
+#order-items > div {
+    position: relative;
+}
+
+#order-items > div strong:last-child {
+    text-align: right;
+    margin-top: 4px;
+}
+#order-items > div {
+    padding: 8px 0;
+}
+
+#order-items > div strong:last-child {
+    display: block;
+    text-align: right;
+    margin-top: 1px;
+}
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .validate-button {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 22px;
+            background: #0b8f72;
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                margin: 0;
+                padding: 12px;
+            }
+
+            .card {
+                padding: 20px;
+                border-radius: 14px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+    <div class="card">
+
+        <h1>Finaliser ma commande</h1>
+        <p class="subtitle">
+            Vérifiez votre commande et renseignez vos informations.
+        </p>
+
+        <h2>Récapitulatif de la commande</h2>
+
+        <div id="order-summary">
+    <div id="order-items"></div>
+
+    <div class="total">
+        <span>Total HT</span>
+        <span id="order-total">0,00 €</span>
+    </div>
+</div>
+
+        <h2>Informations client</h2>
+
+        <form id="customer-form">
+
+            <div class="field">
+                <label for="company">Société</label>
+                <input type="text" id="company" placeholder="Nom de votre société">
+            </div>
+
+<div class="field">
+    <label for="siret">Numéro de SIRET *</label>
+    <input
+        type="text"
+        id="siret"
+        required
+        inputmode="numeric"
+        minlength="14"
+        maxlength="14"
+        pattern="[0-9]{14}"
+        placeholder="14 chiffres"
+    >
+</div>
+
+<div class="field">
+    <label for="name">Nom et prénom *</label>
+    <input type="text" id="name" required>
+</div>
+            
+            <div class="field">
+                <label for="phone">Téléphone *</label>
+                <input type="tel" id="phone" required>
+            </div>
+
+            <div class="field">
+                <label for="address">Adresse de livraison *</label>
+                <input type="text" id="address" required>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="postal">Code postal *</label>
+                    <input type="text" id="postal" required>
+                </div>
+
+                <div class="field">
+                    <label for="city">Ville *</label>
+                    <input type="text" id="city" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="comment">Commentaire</label>
+                <textarea id="comment"
+                    placeholder="Informations complémentaires pour votre commande"></textarea>
+            </div>
+
+            <button type="submit" class="validate-button">
+                Valider ma commande
+            </button>
+
+        </form>
+
+        <a href="index.html" class="back">
+            ← Retour à ma commande
+        </a>
+
+    </div>
+</div>
+<script>
+const cart = JSON.parse(localStorage.getItem("monaCart")) || [];
+
+const orderItems = document.getElementById("order-items");
+const orderTotal = document.getElementById("order-total");
+
+let total = 0;
+
+if (cart.length === 0) {
+    orderItems.innerHTML = "<p>Votre commande est vide.</p>";
+} else {
+   cart.forEach(item => {
+    const quantity = Number(item.quantity) || 1;
+    const price = Number(item.price) || 0;
+
+    const piecesPerCarton = Number(item.piecesPerCarton) || 1;
+    const packagingType = item.packagingType || "Carton";
+    const packagingQty = Number(item.packagingQty) || piecesPerCarton;
+
+    const lineTotal = price * packagingQty * quantity;
+    total += lineTotal;
+
+    const line = document.createElement("div");
+    line.className = "order-item";
+
+    line.innerHTML = `
+        <strong>${item.name}</strong><br>
+        ${price.toFixed(2).replace(".", ",")} € HT/U
+        · ${packagingType} x${packagingQty}
+        · ${quantity} ${packagingType.toLowerCase()}(s)
+        <strong>${lineTotal.toFixed(2).replace(".", ",")} € HT</strong>
+    `;
+
+    orderItems.appendChild(line);
+});
+}
+
+orderTotal.textContent =
+    total.toFixed(2).replace(".", ",") + " €";
+    // ===== VALIDATION ET ENVOI DE LA COMMANDE SUR WHATSAPP =====
+
+const customerForm = document.getElementById("customer-form");
+
+customerForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const company = document.getElementById("company").value.trim();
+    const siret = document.getElementById("siret").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const postal = document.getElementById("postal").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const comment = document.getElementById("comment").value.trim();
+
+    // Vérification des champs obligatoires
+    if (!company || !siret || !name || !phone || !address || !postal || !city) {
+        alert("Veuillez remplir tous les champs obligatoires.");
+        return;
+    }
+
+    // Vérification du SIRET : exactement 14 chiffres
+    if (!/^\d{14}$/.test(siret)) {
+        alert("Le numéro de SIRET doit contenir exactement 14 chiffres.");
+        return;
+    }
+
+    // Vérification de la commande
+    if (!cart || cart.length === 0) {
+        alert("Votre commande est vide.");
+        return;
+    }
+
+    let message = ` - NOUVELLE COMMANDE \n\n`;
+
+    message += `Société : ${company}\n`;
+    message += `SIRET : ${siret}\n`;
+    message += `Client : ${name}\n`;
+    message += `Téléphone : ${phone}\n`;
+    message += `Livraison : ${address}, ${postal} ${city}\n\n`;
+
+    message += '────────────\n';
+    message += 'COMMANDE\n';
+    message += '────────────\n\n';
+
+    let totalCommande = 0;
+
+    cart.forEach((item, index) => {
+        const quantity = Number(item.quantity) || 1;
+        const price = Number(item.price) || 0;
+        const packagingQty =
+            Number(item.packagingQty) ||
+            Number(item.piecesPerCarton) ||
+            1;
+
+        const packagingType = item.packagingType || "Carton";
+
+        const lineTotal = price * packagingQty * quantity;
+        totalCommande += lineTotal;
+
+       let typeAffiche = packagingType.toLowerCase();
+
+if (quantity > 1) {
+    if (typeAffiche === "carton") typeAffiche = "cartons";
+    if (typeAffiche === "boîte") typeAffiche = "boîtes";
+    if (typeAffiche === "paquet") typeAffiche = "paquets";
+}
+
+message += `${index + 1}. ${item.name}\n`;
+message += `${quantity} ${typeAffiche} × ${packagingQty} unités\n`;
+message += `${lineTotal.toFixed(2).replace(".", ",")} € HT\n\n`;
+    });
+
+   message += `────────────\n`;
+   message += `TOTAL HT : ${totalCommande.toFixed(2).replace(".", ",")} €\n`;
+   message += `────────────\n`;
+
+    if (comment) {
+        message += `\n Commentaire : ${comment}\n`;
+    }
+// ===== SAUVEGARDE DU BON DE COMMANDE =====
+
+const numeroCommande = Date.now();
+
+const commandeComplete = {
+    numero: numeroCommande,
+    company: company,
+    siret: siret,
+    name: name,
+    phone: phone,
+    address: address,
+    postal: postal,
+    city: city,
+    comment: comment,
+    total: totalCommande,
+
+    cart: cart.map(item => {
+        const quantity = Number(item.quantity) || 1;
+        const packagingQty =
+            Number(item.packagingQty) ||
+            Number(item.piecesPerCarton) ||
+            1;
+
+        const packagingType = item.packagingType || "Carton";
+        const price = Number(item.price) || 0;
+
+        return {
+            name: item.name,
+            quantity: quantity,
+            packagingQty: packagingQty,
+            packagingType: packagingType,
+            lineTotal: price * packagingQty * quantity
+        };
+    })
+};
+
+localStorage.setItem(
+    "derniereCommande",
+    JSON.stringify(commandeComplete)
+);
+
+    const whatsappNumber = "33766965641";
+
+    const whatsappParams = new URLSearchParams();
+whatsappParams.set("text", message);
+
+const whatsappURL =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?" +
+    whatsappParams.toString();
+
+window.location.href = whatsappURL;
+});
+
+</script>
+
+</body>
+</html>
