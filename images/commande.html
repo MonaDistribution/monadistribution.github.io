@@ -426,13 +426,13 @@ const commandeComplete = {
         };
     })
 };
-const donneesBon = encodeURIComponent(
-  JSON.stringify(commandeComplete)
+const donneesBon = LZString.compressToEncodedURIComponent(
+    JSON.stringify(commandeComplete)
 );
 
 const lienBonCommande =
-  "https://monadistribution.github.io/images/bon-commande.html?commande=" +
-  donneesBon;
+    "https://monadistribution.github.io/images/bon-commande.html?c=" +
+    donneesBon;
 
 message += "\n\n📄 Voir le bon de commande :\n" + lienBonCommande;localStorage.setItem(
     "derniereCommande",
