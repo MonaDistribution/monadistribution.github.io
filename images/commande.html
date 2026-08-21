@@ -426,8 +426,15 @@ const commandeComplete = {
         };
     })
 };
+const donneesBon = encodeURIComponent(
+  JSON.stringify(commandeComplete)
+);
 
-localStorage.setItem(
+const lienBonCommande =
+  "https://monadistribution.github.io/images/bon-commande.html?commande=" +
+  donneesBon;
+
+message += "\n\n📄 Voir le bon de commande :\n" + lienBonCommande;localStorage.setItem(
     "derniereCommande",
     JSON.stringify(commandeComplete)
 );
