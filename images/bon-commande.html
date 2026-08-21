@@ -200,7 +200,22 @@
 </div>
 
 <script>
-    const commande = JSON.parse(localStorage.getItem("derniereCommande"));
+    const params = new URLSearchParams(window.location.search);
+const commandeDansLien = params.get("commande");
+
+let commande = null;
+
+if (commandeDansLien) {
+  try {
+    commande = JSON.parse(decodeURIComponent(commandeDansLien));
+  } catch (e) {
+    commande = null;
+  }
+}
+
+if (!commande) {
+  commande = JSON.parse(localStorage.getItem("derniereCommande"));
+}
 
     if (!commande) {
         document.body.innerHTML = "<h2>Aucune commande disponible.</h2>";
