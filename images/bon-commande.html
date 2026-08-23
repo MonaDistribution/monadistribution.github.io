@@ -199,28 +199,36 @@
 
 </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-const commandeDansLien = params.get("c") || params.get("commande");
+<script type="module">
+const SUPABASE_URL = "https://ytriyoiopolqpzbpmchq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_BoM2zCJQCE9fXGXy929SeA_JrV5MiHc";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const params = new URLSearchParams(window.location.search);
+const commandeId = params.get("id");
 
 let commande = null;
 
-if (commandeDansLien) {
+if (commandeId) {
     try {
-        const texte = params.get("c")
-            ? decodeURIComponent(escape(atob(commandeDansLien)))
-            : decodeURIComponent(commandeDansLien);
+        const { data, error } = await supabaseClient
+            .from("commandes")
+            .select("donnees")
+            .eq("id", commandeId)
+            .single();
 
-        commande = JSON.parse(texte);
+        if (error) {
+            console.error("Erreur Supabase :", error);
+        } else {
+            commande = data.donnees;
+        }
     } catch (e) {
-        commande = null;
+        console.error("Erreur récupération commande :", e);
     }
 }
 
 if (!commande) {
     commande = JSON.parse(localStorage.getItem("derniereCommande"));
 }
-
     if (!commande) {
         document.body.innerHTML = "<h2>Aucune commande disponible.</h2>";
     } else {

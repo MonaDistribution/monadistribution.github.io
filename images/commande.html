@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Validation de commande - Mona Distribution</title>
-    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script> 
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -272,6 +273,9 @@
     </div>
 </div>
 <script>
+const SUPABASE_URL = "https://ytriyoiopolqpzbpmchq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_BoM2zCJQCE9fXGXy929SeA_JrV5MiHc";
+
 const cart = JSON.parse(localStorage.getItem("monaCart")) || [];
 
 const orderItems = document.getElementById("order-items");
@@ -314,7 +318,7 @@ orderTotal.textContent =
 
 const customerForm = document.getElementById("customer-form");
 
-customerForm.addEventListener("submit", function (event) {
+customerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const company = document.getElementById("company").value.trim();
@@ -426,15 +430,26 @@ const commandeComplete = {
         };
     })
 };
-const donneesBon = LZString.compressToEncodedURIComponent(
-    JSON.stringify(commandeComplete)
-);
+const { data, error } = await supabaseClient
+    .from("commandes")
+    .insert({
+        donnees: commandeComplete
+    })
+    .select("id")
+    .single();
+
+if (error) {
+    console.error("Erreur Supabase :", error);
+    alert("Erreur lors de la création du bon de commande.");
+    return;
+}
 
 const lienBonCommande =
-    "https://monadistribution.github.io/images/bon-commande.html?c=" +
-    donneesBon;
+    "https://monadistribution.github.io/images/bon-commande.html?id=" + data.id;
 
-message += "\n\n📄 Voir le bon de commande :\n" + lienBonCommande;localStorage.setItem(
+message += "\n\n📄 Voir le bon de commande :\n" + lienBonCommande;
+
+localStorage.setItem(
     "derniereCommande",
     JSON.stringify(commandeComplete)
 );
