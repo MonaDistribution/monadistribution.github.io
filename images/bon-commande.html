@@ -29,57 +29,103 @@
         }
 
         .header {
-            border-bottom: 3px solid #111;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-        }
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    border-bottom: 2px solid #e5e5e5;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
 
-    
-        .logo-mona2 {
-        width: 90px;
-        height: auto;
-        display: block;
-        margin-bottom: 10px;
-        }
+.logo-mona2 {
+    width: 105px;
+    height: auto;
+    display: block;
+}
 
-        .numero {
-            font-weight: bold;
-        }
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.document-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.numero {
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 400;
+}
 
         .client {
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
+    margin-bottom: 16px;
+    line-height: 1.5;
+    font-size: 16px;
+    padding: 4px 6px;
+}
+
+.client strong {
+    font-weight: 700;
+}
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    overflow: hidden;
+}
 
-        th, td {
-            padding: 12px 8px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
+th, td {
+    padding: 18px 22px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+}
 
-        th {
-            background: #f3f3f3;
-        }
+th {
+    background: #f3f3f3;
+    font-weight: 700;
+}
 
-        .total {
-            text-align: right;
-            font-size: 22px;
-            font-weight: bold;
-            margin-top: 30px;
-        }
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+       .total {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
         .commentaire {
-            margin-top: 30px;
-            padding: 15px;
-            background: #f5f5f5;
-        }
-
+    margin-top: 25px;
+    padding: 10px 16px;
+    background: #fafafa;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.mentions {
+    margin-top: 28px;
+    padding: 14px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 11px;
+}
         .print-button {
             display: block;
             width: 100%;
@@ -124,9 +170,10 @@
     }
 
     th:nth-child(1),
-    td:nth-child(1) {
-        width: 27%;
-    }
+td:nth-child(1) {
+    width: 32%;
+    padding-left: 18px;
+}
 
     th:nth-child(2),
     td:nth-child(2) {
@@ -143,9 +190,14 @@
     td:nth-child(4) {
         width: 26%;
     }
-
+th:nth-child(4) {
+    padding-left: 20px;
+}
+td:nth-child(4) {
+    padding-left: 20px;
+}
     .total {
-        font-size: 20px;
+        font-size: 14px;
     }
 }
 
@@ -172,10 +224,13 @@
 
 <div class="bon">
 
-    <div class="header">
+   <div class="header">
     <img src="logo-mona2.PNG" class="logo-mona2" alt="Mona Distribution">
-    <div>BON DE COMMANDE</div>
-    <div class="numero" id="numero-commande" style="margin-top: 6px;"></div>
+
+    <div class="header-text">
+        <div class="document-title">BON DE COMMANDE</div>
+        <div class="numero" id="numero-commande"></div>
+    </div>
 </div>
 
     <div class="client" id="client-info"></div>
@@ -193,10 +248,13 @@
         <tbody id="produits"></tbody>
     </table>
 
-    <div class="total" id="total"></div>
+    <div class="total">
+    <span>TOTAL HT</span>
+    <span id="total"></span>
+</div>
 
     <div class="commentaire" id="commentaire"></div>
-<div style="margin-top: 22px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.5; color: #666;">
+<div class="mentions">
     <strong>Commande sous réserve de disponibilité des stocks au moment de sa préparation.</strong>
     Les quantités peuvent être ajustées en fonction des disponibilités.
     <br><br>
@@ -246,9 +304,9 @@ if (!commande) {
         document.getElementById("numero-commande").textContent =
             "N° " + commande.numero;
 
-       document.getElementById("client-info").innerHTML = `
-    <strong>Date :</strong> ${commande.date}<br>
-    <strong>Société :</strong> ${commande.company}
+      document.getElementById("client-info").innerHTML = `
+    <strong>Date :</strong> <span style="font-size:14px;">${commande.date}</span><br>
+    <strong>Société :</strong> <span style="font-size:14px;">${commande.company}</span>
 `;
         const produits = document.getElementById("produits");
 
@@ -266,10 +324,8 @@ if (!commande) {
             produits.appendChild(ligne);
         });
 
-        document.getElementById("total").textContent =
-            "TOTAL HT : " +
-            commande.total.toFixed(2).replace(".", ",") +
-            " €";
+       document.getElementById("total").textContent =
+    commande.total.toFixed(2).replace(".", ",") + " €";
 
         if (commande.comment) {
             document.getElementById("commentaire").innerHTML =
