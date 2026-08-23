@@ -34,9 +34,12 @@
             margin-bottom: 25px;
         }
 
-        h1 {
-            margin: 0 0 8px;
-            font-size: 28px;
+    
+        .logo-mona2 {
+        width: 90px;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
         }
 
         .numero {
@@ -170,10 +173,10 @@
 <div class="bon">
 
     <div class="header">
-        <h1>MONA DISTRIBUTION</h1>
-        <div>BON DE COMMANDE</div>
-        <div class="numero" id="numero-commande" style="margin-top: 6px;"></div>
-    </div>
+    <img src="logo-mona2.png" class="logo-mona2" alt="Mona Distribution">
+    <div>BON DE COMMANDE</div>
+    <div class="numero" id="numero-commande" style="margin-top: 6px;"></div>
+</div>
 
     <div class="client" id="client-info"></div>
 
@@ -193,7 +196,13 @@
     <div class="total" id="total"></div>
 
     <div class="commentaire" id="commentaire"></div>
-
+<div style="margin-top: 22px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.5; color: #666;">
+    <strong>Commande sous réserve de disponibilité des stocks au moment de sa préparation.</strong>
+    Les quantités peuvent être ajustées en fonction des disponibilités.
+    <br><br>
+    Ce document constitue un bon de commande et non une facture.
+    Les montants définitifs seront établis selon les quantités effectivement disponibles et livrées.
+</div>
     <button class="print-button" onclick="window.print()">
         Imprimer / Enregistrer en PDF
     </button>
@@ -237,14 +246,10 @@ if (!commande) {
         document.getElementById("numero-commande").textContent =
             "N° " + commande.numero;
 
-        document.getElementById("client-info").innerHTML = `
-            <strong>Société :</strong> ${commande.company}<br>
-            <strong>SIRET :</strong> ${commande.siret}<br>
-            <strong>Client :</strong> ${commande.name}<br>
-            <strong>Téléphone :</strong> ${commande.phone}<br>
-            <strong>Livraison :</strong> ${commande.address}, ${commande.postal} ${commande.city}
-        `;
-
+       document.getElementById("client-info").innerHTML = `
+    <strong>Date :</strong> ${commande.date}<br>
+    <strong>Société :</strong> ${commande.company}
+`;
         const produits = document.getElementById("produits");
 
         commande.cart.forEach(item => {
@@ -268,7 +273,7 @@ if (!commande) {
 
         if (commande.comment) {
             document.getElementById("commentaire").innerHTML =
-                "<strong>Commentaire :</strong><br>" + commande.comment;
+                commande.comment;
         } else {
             document.getElementById("commentaire").style.display = "none";
         }
