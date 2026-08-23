@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Validation de commande - Mona Distribution</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>   
     <style>
         * {
             box-sizing: border-box;
@@ -265,7 +265,7 @@
 
         </form>
 
-        <a href="../index.html" class="back">
+        <a href="https://monadistribution.github.io/" class="back">
             ← Retour à ma commande
         </a>
 
@@ -426,8 +426,15 @@ const commandeComplete = {
         };
     })
 };
+const donneesBon = LZString.compressToEncodedURIComponent(
+    JSON.stringify(commandeComplete)
+);
 
-localStorage.setItem(
+const lienBonCommande =
+    "https://monadistribution.github.io/images/bon-commande.html?c=" +
+    donneesBon;
+
+message += "\n\n📄 Voir le bon de commande :\n" + lienBonCommande;localStorage.setItem(
     "derniereCommande",
     JSON.stringify(commandeComplete)
 );
