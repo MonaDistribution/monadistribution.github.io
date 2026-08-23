@@ -275,6 +275,7 @@
 <script>
 const SUPABASE_URL = "https://ytriyoiopolqpzbpmchq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_BoM2zCJQCE9fXGXy929SeA_JrV5MiHc";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const cart = JSON.parse(localStorage.getItem("monaCart")) || [];
 
