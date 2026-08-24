@@ -455,7 +455,13 @@ localStorage.setItem(
     "derniereCommande",
     JSON.stringify(commandeComplete)
 );
-
+message =
+    "Bonjour,\n\n" +
+    "Votre commande Mona Distribution a bien été enregistrée. ✅\n\n" +
+    "📄 Consultez votre bon de commande ici :\n" +
+    lienBonCommande +
+    "\n\n⚠️ Commande sous réserve de disponibilité des stocks.\n\n" +
+    "Merci pour votre confiance.";
     const whatsappNumber = "33766965641";
 
     const whatsappParams = new URLSearchParams();
