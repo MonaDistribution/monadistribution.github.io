@@ -398,7 +398,16 @@ message += `${lineTotal.toFixed(2).replace(".", ",")} € HT\n\n`;
     }
 // ===== SAUVEGARDE DU BON DE COMMANDE =====
 
-const numeroCommande = Date.now();
+const { data: numeroData, error: numeroError } = await supabaseClient
+    .rpc("next_commande_numero");
+
+if (numeroError) {
+    console.error("Erreur numéro commande :", numeroError);
+    alert("Erreur lors de la génération du numéro de commande.");
+    return;
+}
+
+const numeroCommande = String(numeroData).padStart(6, "0");
 
 const commandeComplete = {
     numero: numeroCommande,
