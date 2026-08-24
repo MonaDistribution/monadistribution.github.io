@@ -277,7 +277,7 @@ td:not(:last-child) {
                 <th>Produit</th>
                 <th>P/U</th>
                 <th>Qté</th>
-                <th>Colisage</th>
+                <th>Colis</th>
                 <th>Total HT</th>
             </tr>
         </thead>
@@ -358,7 +358,7 @@ if (!commande) {
     <td>${item.name}</td>
     <td>${item.price.toFixed(2).replace(".", ",")} €</td>
     <td>${item.quantity}</td>
-    <td>${item.packagingType} × ${item.packagingQty}</td>
+    <td>× ${item.packagingQty}</td>
     <td>${item.lineTotal.toFixed(2).replace(".", ",")} €</td>
 `;
 
