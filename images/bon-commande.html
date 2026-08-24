@@ -146,6 +146,127 @@ tbody tr:last-child td {
     margin-top: 18px;
     margin-bottom: 18px;
 }
+/* ===== VERSION ORDINATEUR STYLE A4 ===== */
+@media screen and (min-width: 601px) {
+
+    body {
+        padding: 30px 0;
+        background: #e9e9e9;
+    }
+
+    .bon {
+        width: 620px;
+        max-width: 620px;
+        margin: 0 auto;
+        padding: 28px 24px;
+        background: white;
+        border-radius: 0;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+
+    .header {
+        gap: 18px;
+        padding-bottom: 12px;
+        margin-bottom: 18px;
+    }
+
+    .logo-mona2 {
+        width: 90px;
+    }
+
+    .document-title {
+        font-size: 20px;
+    }
+
+    .numero {
+        font-size: 14px;
+        margin-top: 6px;
+    }
+
+    .client {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 14px;
+        padding: 4px 6px;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        margin-top: 14px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    th,
+    td {
+        padding: 7px 8px;
+        font-size: 12px;
+        line-height: 1.2;
+        overflow-wrap: break-word;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+        width: 51%;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+        width: 12%;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 9%;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+        width: 12%;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+        width: 16%;
+    }
+
+    .total {
+        margin-top: 14px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .commentaire {
+        margin-top: 14px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .mentions {
+        margin-top: 16px;
+        padding: 10px;
+        font-size: 10px;
+    }
+}
+/* Centrer les titres de toutes les colonnes */
+th {
+    text-align: center;
+}
+
+/* Garder les noms des produits alignés à gauche */
+td:first-child {
+    text-align: left;
+}
+
+/* Centrer P/U, Qté, Colis et Total HT */
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5) {
+    text-align: center;
+}
+
 @media screen and (max-width: 600px) {
 
     body {
