@@ -7,6 +7,87 @@
 <title>Mona Distribution | Catalogue</title>
 
 <style>
+    /* ===== INDEX ALPHABÉTIQUE ===== */
+.alphabet-filter {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    padding: 8px 12px;
+    margin: -40px auto 10px;
+    max-width: 1000px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.alphabet-filter::-webkit-scrollbar {
+    display: none;
+}
+
+.alphabet-filter button {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.alphabet-filter button:hover {
+    background: #f2f2f2;
+}
+/* Indication discrète : faire défiler les lettres vers la droite */
+.alphabet-filter::after {
+    content: "›";
+    position: sticky;
+    right: 0;
+    flex: 0 0 28px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    font-weight: 700;
+    color: #16a34a;
+
+    background: linear-gradient(to right, transparent, white 45%);
+    padding-left: 8px;
+
+    pointer-events: none;
+    z-index: 5;
+}
+.alphabet-filter::before {
+    content: "‹";
+    position: sticky;
+    left: 0;
+    flex: 0 0 28px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    font-weight: 700;
+    color: #16a34a;
+
+    background: linear-gradient(to left, transparent, white 45%);
+    padding-right: 8px;
+
+    pointer-events: none;
+    z-index: 5;
+}
+.alphabet-filter.at-start::before {
+    visibility: hidden;
+}
+
+.alphabet-filter.at-end::after {
+    visibility: hidden;
+}
 /* STOCK + NOUVEAUTÉ */
 
 .badges-line {
@@ -748,7 +829,7 @@ footer p {
 <div class="categories">
 
   <button class="category active" data-category="Tous">
-    Tous
+    🌐 Tous
   </button>
 
   <button class="category" data-category="Nouveautés">
@@ -778,10 +859,38 @@ footer p {
 </div>
 </div>
 
+<div class="alphabet-filter">
+    <button data-letter="A">A</button>
+    <button data-letter="B">B</button>
+    <button data-letter="C">C</button>
+    <button data-letter="D">D</button>
+    <button data-letter="E">E</button>
+    <button data-letter="F">F</button>
+    <button data-letter="G">G</button>
+    <button data-letter="H">H</button>
+    <button data-letter="I">I</button>
+    <button data-letter="J">J</button>
+    <button data-letter="K">K</button>
+    <button data-letter="L">L</button>
+    <button data-letter="M">M</button>
+    <button data-letter="N">N</button>
+    <button data-letter="O">O</button>
+    <button data-letter="P">P</button>
+    <button data-letter="Q">Q</button>
+    <button data-letter="R">R</button>
+    <button data-letter="S">S</button>
+    <button data-letter="T">T</button>
+    <button data-letter="U">U</button>
+    <button data-letter="V">V</button>
+    <button data-letter="W">W</button>
+    <button data-letter="X">X</button>
+    <button data-letter="Y">Y</button>
+    <button data-letter="Z">Z</button>
+</div>
 
 <main class="container">
 
-<h2>Nos Produits</h2>
+<h2 id="products-title">🌐 Nos Produits</h2>
 
 <div class="products">
 
@@ -812,7 +921,7 @@ footer p {
         <span class="badge">Nouveauté</span>
 
         <h3>
-            Cotex Confort - Papier hygiénique
+            Cotex Confort x24 - Papier hygiénique
         </h3>
 
         <div class="description">
@@ -850,10 +959,10 @@ footer p {
     </div>
     <div class="product-info">
         <span class="badge">Nouveauté</span>
-        <h3>Venus Shampoing Color 250 ml</h3>
-        <div class="description">Shampoing cheveux colorés</div>
+        <h3>Venus - Shampoing Color</h3>
+        <div class="description">250 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
-        <div class="price">1,10 € <small>HT</small></div>
+        <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
@@ -861,16 +970,18 @@ footer p {
 <!-- PRODUIT 3 -->
 <article class="product" data-name="Venus Shampoing Repair acide hyaluronique 250ml" data-category="Cosmétique Nouveautés" 
     data-added="2026-08-18" 
-    data-stock="oui  ">
+    data-stock="oui"
+    data-promo="oui"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/SH ACIDE HYA.jpg" alt="Venus Shampoo Repair">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing Repair 250 ml</h3>
-        <div class="description">Shampoing hydratation longue durée</div>
+        <h3>Venus - Shampoing Repair</h3>
+        <div class="description">250 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
-        <div class="price">1,10 € <small>HT</small></div>
+        <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
@@ -878,89 +989,112 @@ footer p {
 <!-- PRODUIT 4 -->
 <article class="product" data-name="Venus Shampoing Botanical Touch 2 en 1 figue de barbarie jojoba 400ml" data-category="Cosmétique Nouveautés"
     data-added="2026-08-18"
-    data-stock="oui">
+    data-stock="non"
+    data-promo="oui"
+    data-promo-price="1.00">
+    
     <div class="product-image">
         <img src="images/GD JUJUBIER.jpg" alt="Venus Botanical Touch">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing Botanical Touch 2 en 1 - 400 ml</h3>
-        <div class="description">Figue de barbarie &amp; Jojoba</div>
-        <div class="colisage">Carton - 20 pièces</div>
-        <div class="price">1,00 € <small>HT</small></div>
-        <a class="whatsapp" href="#">Commander sur WhatsApp</a>
-    </div>
-</article>
-
-<!-- PRODUIT 5 -->
-<article class="product" data-name="Venus Shampoing Habba Saouda 400ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
-    <div class="product-image">
-        <img src="images/SH HABBA SAOUDA.jpg" alt="Venus Habba Saouda">
-    </div>
-    <div class="product-info">
-        <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing Habba Saouda 400 ml</h3>
-        <div class="description">Shampoing cheveux bruns &amp; ternes</div>
-        <div class="colisage">Carton - 20 pièces</div>
-        <div class="price">1,00 € <small>HT</small></div>
-        <a class="whatsapp" href="#">Commander sur WhatsApp</a>
-    </div>
-</article>
-
-<!-- PRODUIT 6 -->
-<article class="product" data-name="Venus Shampoing Hair Excell Shine sans sulfates" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
-    <div class="product-image">
-        <img src="images/SH SANS SULFATE.jpg" alt="Venus Hair Excell Shine">
-    </div>
-    <div class="product-info">
-        <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing Hair Excell Shine 250ml</h3>
-        <div class="description">Shampoing sans sulfates à la kératine</div>
+        <h3>Venus - Shampoing Botanical</h3>
+        <div class="description">400 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
+<!-- PRODUIT 5 -->
+<article class="product" data-name="Venus Shampoing Habba Saouda 400ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="oui"
+    data-promo-price="1.00">
+    <div class="product-image">
+        <img src="images/SH HABBA SAOUDA.jpg" alt="Venus Habba Saouda">
+    </div>
+    <div class="product-info">
+        <span class="badge">NOUVEAUTÉ</span>
+        <h3>Venus - Shampoing Habba Saouda</h3>
+        <div class="description">400 ml</div>
+        <div class="colisage">Carton - 20 pièces</div>
+        <div class="price">1,20 € <small>HT</small></div>
+        <a class="whatsapp" href="#">Commander sur WhatsApp</a>
+    </div>
+</article>
+
+<!-- PRODUIT 6 -->
+<article class="product" data-name="Venus Shampoing Hair Excell Shine sans sulfates" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="oui"
+    data-promo-price="1.20">
+    <div class="product-image">
+        <img src="images/SH SANS SULFATE.jpg" alt="Venus Hair Excell Shine">
+    </div>
+    <div class="product-info">
+        <span class="badge">NOUVEAUTÉ</span>
+        <h3>Venus - Shampoing Excell Shine</h3>
+        <div class="description">250 ml</div>
+        <div class="colisage">Carton - 20 pièces</div>
+        <div class="price">1,30 € <small>HT</small></div>
+        <a class="whatsapp" href="#">Commander sur WhatsApp</a>
+    </div>
+</article>
+
 <!-- PRODUIT 7 -->
-<article class="product" data-name="Venus Shampoing Anti Pelliculaire Amande Douce 250ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Shampoing Anti Pelliculaire Amande Douce 250ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="oui"
+    data-promo-price="0.90">
     <div class="product-image">
         <img src="images/SH ANTI P AMANDE.jpg" alt="Venus Anti-Pelliculaire Amande Douce">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing Anti-Pelliculaire Amande Douce 250 ml</h3>
-        <div class="description">Shampoing &amp; conditioner cheveux secs</div>
+        <h3>Venus - Shampoing Anti-Pelliculaire Amande Douce</h3>
+        <div class="description">250 ml</div>
         <div class="colisage">Carton - 20 pièces</div> 
-        <div class="price">0,90 € <small>HT</small></div>
+        <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="Venus Shampoing Anti Pelliculaire Menthol 250ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Shampoing Anti Pelliculaire Menthol 250ml" data-category="Cosmétique Nouveautés"
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="oui"
+    data-promo-price="0.90">
     <div class="product-image">
         <img src="images/SH ANTI P MENTHE.jpg" alt="Venus Anti-Pelliculaire Menthol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing Anti-Pelliculaire Menthol 250 ml</h3>
-        <div class="description">Shampoing  &amp; conditioner au menthol</div>
+        <h3>Venus - Shampoing Anti-Pelliculaire Menthol</h3>
+        <div class="description">250 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
-        <div class="price">0,90 € <small>HT</small></div>
+        <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="Venus Masque Hair Color acide hyaluronique" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Masque Hair Color acide hyaluronique" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/MASQUE COLOR.jpg" alt="Venus Hair Mask Color">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Masque Hair Color 250ml</h3>
-        <div class="description">Masque protecteur à l'acide hyaluronique</div>
+        <h3>Venus - Masque Hair Color</h3>
+        <div class="description">Masque protecteur à l'acide hyaluronique 250ml</div>
         <div class="colisage">Carton - 18 pièces</div>
         <div class="price">1,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -968,28 +1102,36 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="Venus Masque Hair Mask Repair acide hyaluronique" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Masque Hair Mask Repair acide hyaluronique" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/MASQUE ACIDE HYA.jpg" alt="Venus Hair Mask Repair">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Masque Hair Mask Repair 250ml</h3>
-        <div class="description">Masque hydratation longue durée</div>
+        <h3>Venus - Masque Hair Mask Repair</h3>
+        <div class="description">Masque hydratation longue durée 250ml</div>
         <div class="colisage">Carton - 18 pièces</div>
         <div class="price">1,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 <!-- PRODUIT 10 -->
-<article class="product" data-name="Venus Sérum Repair cheveux secs 150ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Sérum Repair cheveux secs 150ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/SERUM SEC.jpg" alt="Venus Sérum Repair Cheveux Secs">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Sérum Repair - Cheveux Secs 150 ml</h3>
-        <div class="description">Sérum capillaire pour cheveux secs</div>
+        <h3>Venus - Sérum Repair</h3>
+        <div class="description">Cheveux Secs 150 ml<</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">2,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -997,14 +1139,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 11 -->
-<article class="product" data-name="Venus Sérum Gloss cheveux colores 150ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Sérum Gloss cheveux colores 150ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/SERUM COLOR.jpg" alt="Venus Sérum Gloss Cheveux Colorés">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Sérum Gloss - Cheveux Colorés 150 ml</h3>
-        <div class="description">Sérum capillaire pour cheveux colorés</div>
+        <h3>Venus - Sérum Gloss</h3>
+        <div class="description">Cheveux Colorés 150 ml</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">2,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1012,14 +1158,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 12 -->
-<article class="product" data-name="Venus Sérum Anti Frizz cheveux frises 150ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Sérum Anti Frizz cheveux frises 150ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/SERUM FRIZ.jpg" alt="Venus Sérum Anti-Frizz Cheveux Frisés">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Sérum Anti-Frizz - Cheveux Frisés 150 ml</h3>
-        <div class="description">Sérum capillaire anti-frisottis pour cheveux frisés</div>
+        <h3>Venus - Sérum Anti-Frizz</h3>
+        <div class="description">Cheveux Frisés 150 ml</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">2,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1027,14 +1177,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 13 -->
-<article class="product" data-name="Venus Qamar Deodorant Parfum Oud 200ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Qamar Deodorant Parfum Oud 200ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/DEO OUD.jpg" alt="Venus Qamar Parfum Oud">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Qamar Déodorant Parfum Oud 200 ml</h3>
-        <div class="description">Déodorant parfumé senteur Oud</div>
+        <h3>Venus - Qamar Déodorant Oud </h3>
+        <div class="description">Déodorant parfum Oud 200 ml</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1042,14 +1196,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 14 -->
-<article class="product" data-name="Venus Qamar Deodorant Senteur Musc 200ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Qamar Deodorant Senteur Musc 200ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/DEO MUSK.jpg" alt="Venus Qamar Senteur Musc">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Qamar Déodorant Senteur Musc 200 ml</h3>
-        <div class="description">Déodorant parfumé senteur Musc</div>
+        <h3>Venus - Qamar Déodorant Musc </h3>
+        <div class="description">Déodorant parfum Musc 200 ml</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1057,14 +1215,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 15 -->
-<article class="product" data-name="Venus Qamar Deodorant Senteur Ambree 200ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Qamar Deodorant Senteur Ambree 200ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/DEO AMBRE.jpg" alt="Venus Qamar Senteur Ambrée">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Qamar Déodorant Senteur Ambrée 200 ml</h3>
-        <div class="description">Déodorant parfumé senteur ambrée</div>
+        <h3>Venus - Qamar Déodorant Ambrée </h3>
+        <div class="description">Déodorant parfum Ambrée 200 ml</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1072,14 +1234,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 16 -->
-<article class="product" data-name="Venus Qamar Deodorant Senteur Florale 200ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Qamar Deodorant Senteur Florale 200ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/DEO FLORAL.jpg" alt="Venus Qamar Senteur Florale">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Qamar Déodorant Senteur Florale 200 ml</h3>
-        <div class="description">Déodorant parfumé senteur florale</div>
+        <h3>Venus - Qamar Déodorant Florale </h3>
+        <div class="description">Déodorant parfum Florale 200 ml</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1087,14 +1253,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 17 -->
-<article class="product" data-name="Venus Viderm Eau Micellaire" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Viderm Eau Micellaire" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/MICELAIR.jpg" alt="Venus Viderm Eau Micellaire">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Viderm Eau Micellaire 250ml</h3>
-        <div class="description">Eau micellaire démaquillante visage, yeux et lèvres</div>
+        <h3>Venus - Viderm Eau Micellaire </h3>
+        <div class="description">Eau micellaire démaquillante visage, yeux et lèvres 250ml</div>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1102,14 +1272,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 18 -->
-<article class="product" data-name="Venus Lingettes Micellaires Waterproof 20 lingettes" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Lingettes Micellaires Waterproof 20 lingettes" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/LING 1.jpg" alt="Venus Lingettes Micellaires Waterproof">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Lingettes Micellaires Waterproof x20</h3>
-        <div class="description">Lingettes démaquillantes micellaires 3-en-1 visage, yeux et lèvres</div>
+        <h3>Venus - Lingettes Micellaires Waterproof x20</h3>
+        <div class="description">Rose 3-en-1 visage, yeux et lèvres</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">0,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1117,14 +1291,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 19 -->
-<article class="product" data-name="Venus Lingettes Micellaires Quotidien 20 lingettes" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Lingettes Micellaires Quotidien 20 lingettes" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/LING 2.jpg" alt="Venus Lingettes Micellaires Quotidien">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Lingettes Micellaires Quotidien x20</h3>
-        <div class="description">Lingettes démaquillantes micellaires 3-en-1 visage, yeux et lèvres</div>
+        <h3>Venus - Lingettes Micellaires Quotidien x20</h3>
+        <div class="description">Aloe vera 3-en-1 visage, yeux et lèvres</div>
         <div class="colisage">Carton - 24 pièces</div>
         <div class="price">0,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1132,14 +1310,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 20 -->
-<article class="product" data-name="Venus Gel Douche Tentation Exotique 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Tentation Exotique 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1936.jpg" alt="Venus Gel Douche Tentation Exotique">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Tentation Exotique 240 ml</h3>
-        <div class="description">Gel douche parfum exotique</div>
+        <h3>Venus - Gel Douche Tentation Exotique</h3>
+        <div class="description">Exotique 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1147,14 +1329,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 21 -->
-<article class="product" data-name="Venus Gel Douche Jardin d'été 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Jardin d'été 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1937.jpg" alt="Venus Gel Douche Jardin d'été">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Jardin d'été 240 ml</h3>
-        <div class="description">Gel douche parfum floral</div>
+        <h3>Venus - Gel Douche Jardin d'été</h3>
+        <div class="description">Floral 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1162,14 +1348,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 22 -->
-<article class="product" data-name="Venus Gel Douche Evasion Tropicale 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Evasion Tropicale 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1938.jpg" alt="Venus Gel Douche Evasion Tropicale">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Évasion Tropicale 240 ml</h3>
-        <div class="description">Gel douche parfum tropical</div>
+        <h3>Venus - Gel Douche Évasion Tropicale</h3>
+        <div class="description">Tropical 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1177,14 +1367,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 23 -->
-<article class="product" data-name="Venus Gel Douche Creme Summer Vibes 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Creme Summer Vibes 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1939.jpg" alt="Venus Gel Douche Creme Summer Vibes">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Crème Summer Vibes 240 ml</h3>
-        <div class="description">Gel douche crème Summer Vibes</div>
+        <h3>Venus - Gel Douche Crème Summer Vibes</h3>
+        <div class="description">Summer Vibes 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1192,14 +1386,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 24 -->
-<article class="product" data-name="Venus Gel Douche Creme Velvet Flower 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Creme Velvet Flower 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1940.jpg" alt="Venus Gel Douche Creme Velvet Flower">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Crème Velvet Flower 240 ml</h3>
-        <div class="description">Gel douche crème parfum floral</div>
+        <h3>Venus - Gel Douche Crème Velvet Flower</h3>
+        <div class="description">Floral 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1207,14 +1405,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 25 -->
-<article class="product" data-name="Venus Gel Douche Creme Sweet Dreams 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Creme Sweet Dreams 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1941.jpg" alt="Venus Gel Douche Creme Sweet Dreams">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Crème Sweet Dreams 240 ml</h3>
-        <div class="description">Gel douche crème Sweet Dreams</div>
+        <h3>Venus - Gel Douche Crème Sweet Dreams</h3>
+        <div class="description">Sweet Dreams 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1222,14 +1424,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 26 -->
-<article class="product" data-name="Venus Gel Douche Exfoliant Mangue 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Exfoliant Mangue 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1942.jpg" alt="Venus Gel Douche Exfoliant Mangue">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Mangue 240 ml</h3>
-        <div class="description">Gel douche exfoliant parfum mangue</div>
+        <h3>Venus - Gel Douche Exfoliant Mangue</h3>
+        <div class="description">Mangue 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1237,14 +1443,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 27 -->
-<article class="product" data-name="Venus Gel Douche Exfoliant Fruit de la Passion 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Exfoliant Fruit de la Passion 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1943.jpg" alt="Venus Gel Douche Exfoliant Fruit de la Passion">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Fruit de la Passion 240 ml</h3>
-        <div class="description">Gel douche exfoliant parfum fruit de la passion</div>
+        <h3>Venus - Gel Douche Exfoliant Fruit de la Passion</h3>
+        <div class="description">Fruit de la passion 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1252,14 +1462,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 28 -->
-<article class="product" data-name="Venus Gel Douche Exfoliant Luffa Bambou 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Exfoliant Luffa Bambou 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1944.jpg" alt="Venus Gel Douche Exfoliant Luffa Bambou">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Luffa & Bambou 240 ml</h3>
-        <div class="description">Aux fibres naturelles de luffa & bambou</div>
+        <h3>Venus - Gel Douche Exfoliant Luffa & Bambou</h3>
+        <div class="description">Aux fibres naturelles de luffa & bambou 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1267,14 +1481,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 29 -->
-<article class="product" data-name="Venus Gel Douche Exfoliant Fruits des Bois 240ml" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus Gel Douche Exfoliant Fruits des Bois 240ml" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1945.jpg" alt="Venus Gel Douche Exfoliant Fruits des Bois">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Fruits des Bois 240 ml</h3>
-        <div class="description">Aux pépins naturels de raisin, parfum fruits des bois</div>
+        <h3>Venus - Gel Douche Exfoliant Fruits des Bois</h3>
+        <div class="description">Aux pépins naturels de raisin, parfum fruits des bois 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1282,14 +1500,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 12 -->
-<article class="product" data-name="venus gel douche exfoliant fraise" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="venus gel douche exfoliant fraise" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1946.jpg" alt="Venus Gel Douche Exfoliant Fraise">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Fraise 240 ml</h3>
-        <div class="description">Gel douche exfoliant Venus – Fraise</div>
+        <h3>Venus - Gel Douche Exfoliant Fraise</h3>
+        <div class="description">Fraise 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1297,14 +1519,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 13 -->
-<article class="product" data-name="venus gel douche exfoliant figue" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Gel Douche Exfoliant Figue" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1947.jpg" alt="Venus Gel Douche Exfoliant Figue">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Figue 240 ml</h3>
-        <div class="description">Gel douche exfoliant Venus – Figue</div>
+        <h3>Venus - Gel Douche Exfoliant Figue</h3>
+        <div class="description">Figue 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1312,14 +1538,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 14 -->
-<article class="product" data-name="venus gel douche exfoliant fruit du dragon" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Gel Douche Exfoliant Fruit du Dragon" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1948.jpg" alt="Venus Gel Douche Exfoliant Fruit du Dragon">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Fruit du Dragon 240 ml</h3>
-        <div class="description">Gel douche exfoliant Venus – Fruit du dragon</div>
+        <h3>Venus - Gel Douche Exfoliant Fruit du Dragon</h3>
+        <div class="description">Fruit du Dragon 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1327,14 +1557,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 15 -->
-<article class="product" data-name="venus gel douche exfoliant abricot peche" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Gel Douche Exfoliant Abricot & Pêche" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1949.jpg" alt="Venus Gel Douche Exfoliant Abricot et Pêche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Exfoliant Abricot & Pêche 240 ml</h3>
-        <div class="description">Gel douche exfoliant Venus – Abricot & Pêche</div>
+        <h3>Venus - Gel Douche Exfoliant Abricot & Pêche</h3>
+        <div class="description">Abricot & Pêche 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1342,14 +1576,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 16 -->
-<article class="product" data-name="venus gel douche paillete caviar" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Gel Douche Pailleté Caviar" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1950.jpg" alt="Venus Gel Douche Pailleté Caviar">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Pailleté Caviar 240 ml</h3>
-        <div class="description">Gel douche pailleté Venus – Extrait de Caviar</div>
+        <h3>Venus - Gel Douche Pailleté Caviar</h3>
+        <div class="description">Caviar 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1357,14 +1595,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 17 -->
-<article class="product" data-name="venus gel douche kiwi" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Gel Douche Kiwi" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1951.jpg" alt="Venus Gel Douche Kiwi">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Kiwi 240 ml</h3>
-        <div class="description">Gel douche Venus – Kiwi</div>
+        <h3>Venus - Gel Douche Kiwi</h3>
+        <div class="description">Kiwi 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1372,14 +1614,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 18 -->
-<article class="product" data-name="venus creme de douche rose" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Crème de Douche Rose" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1952.jpg" alt="Venus Crème de Douche Rose">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Crème de Douche Rose 240 ml</h3>
-        <div class="description">Crème de douche Venus – Rose</div>
+        <h3>Venus - Crème de Douche Rose</h3>
+        <div class="description">Rose 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1387,14 +1633,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 19 -->
-<article class="product" data-name="venus gel douche fleur de lotus" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Gel Douche Fleur de Lotus" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1953.jpg" alt="Venus Gel Douche Fleur de Lotus">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Fleur de Lotus 240 ml</h3>
-        <div class="description">Gel douche Venus – Fleur de Lotus</div>
+        <h3>Venus - Gel Douche Fleur de Lotus</h3>
+        <div class="description">Fleur de Lotus 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1402,14 +1652,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 20 -->
-<article class="product" data-name="venus gel douche noix de coco" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Gel Douche Noix de Coco" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1954.jpg" alt="Venus Gel Douche Noix de Coco">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Gel Douche Noix de Coco 240 ml</h3>
-        <div class="description">Gel douche Venus – Noix de Coco</div>
+        <h3>Venus - Gel Douche Noix de Coco</h3>
+        <div class="description">Noix de Coco 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1417,28 +1671,36 @@ footer p {
 </article>
 
 <!-- PRODUIT 21 -->
-<article class="product" data-name="venus creme de douche vanille" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Crème de Douche Vanille" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1955.jpg" alt="Venus Crème de Douche Vanille">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Crème de Douche Vanille 240 ml</h3>
-        <div class="description">Crème de douche Venus – Vanille</div>
+        <h3>Venus - Crème de Douche Vanille</h3>
+        <div class="description">Vanille 240 ml</div>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="coty lys family bâtonnets ouatés 200" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Coty'lys Family - Bâtonnets Ouatés 200" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.70">
     <div class="product-image">
         <img src="images/IMG_1959.PNG" alt="Coty'lys Family Bâtonnets Ouatés 200">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Coty'lys Family - Bâtonnets Ouatés 200</h3>
-        <p class="description">Bâtonnets ouatés 100% coton - Boîte de 200</p>
+        <h3>Coty'lys Family - Bâtonnets coton</h3>
+        <p class="description">Boîte de 200</p>
         <div class="colisage">Carton - 36 pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1446,14 +1708,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="venus eden star gel douche" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Eden Star Gel Douche" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1956.jpg" alt="Venus Eden Star Gel Douche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Eden Star - Gel Douche 240 ml</h3>
-        <p class="description">Gel douche parfumé Eden Star</p>
+        <h3>Venus - Eden Star Gel Douche</h3>
+        <p class="description">Eden Star 240 ml</p>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1461,14 +1727,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="venus eden lovely gel douche" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Eden Lovely Gel Douche" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1957.jpg" alt="Venus Eden Lovely Gel Douche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Eden Lovely - Gel Douche 240 ml</h3>
-        <p class="description">Gel douche parfumé Eden Lovely</p>
+        <h3>Venus - Eden Lovely Gel Douche</h3>
+        <p class="description">Eden Lovely 240 ml</p>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1476,14 +1746,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="venus eden flower gel douche" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Eden Flower Gel Douche" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1958.jpg" alt="Venus Eden Flower Gel Douche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Eden Flower - Gel Douche 240 ml</h3>
-        <p class="description">Gel douche parfumé Eden Flower</p>
+        <h3>Venus - Eden Flower Gel Douche</h3>
+        <p class="description">Eden Flower 240 ml</p>
         <div class="colisage">Carton - 20 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1491,14 +1765,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="force xpress jardin de nuit" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Force Xpress - Jardin de Nuit" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.30">
     <div class="product-image">
         <img src="images/IMG_1970.jpg" alt="Force Xpress Jardin de Nuit">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Force Xpress - Jardin de Nuit 430 ml</h3>
-        <p class="description">Désodorisant parfum Jardin de Nuit</p>
+        <h3>Force Xpress - Jardin de Nuit</h3>
+        <p class="description">Désodorisant parfum Jardin de Nuit 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1506,14 +1784,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="force xpress jasmin de nuit" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Force Xpress - Jasmin de Nuit" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.30">
     <div class="product-image">
         <img src="images/IMG_1971.jpg" alt="Force Xpress Jasmin de Nuit">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Force Xpress - Jasmin de Nuit 430 ml</h3>
-        <p class="description">Désodorisant parfum Jasmin de Nuit</p>
+        <h3>Force Xpress - Jasmin de Nuit</h3>
+        <p class="description">Désodorisant parfum Jasmin de Nuit 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1521,14 +1803,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="force xpress reine de la nuit" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Force Xpress - Reine de la Nuit" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.30">
     <div class="product-image">
         <img src="images/IMG_1972.PNG" alt="Force Xpress Reine de la Nuit">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Force Xpress - Reine de la Nuit 430 ml</h3>
-        <p class="description">Désodorisant parfum Reine de la Nuit</p>
+        <h3>Force Xpress - Reine de la Nuit</h3>
+        <p class="description">Désodorisant parfum Reine de la Nuit 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1536,14 +1822,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="force xpress fleur de lune" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Force Xpress - Fleur de Lune" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.30">
     <div class="product-image">
         <img src="images/IMG_1973.jpg" alt="Force Xpress Fleur de Lune">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Force Xpress - Fleur de Lune 430 ml</h3>
-        <p class="description">Désodorisant parfum Fleur de Lune</p>
+        <h3>Force Xpress - Fleur de Lune</h3>
+        <p class="description">Désodorisant parfum Fleur de Lune 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1551,14 +1841,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="venus viderm mousse nettoyante purifiante" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Viderm Mousse Nettoyante Purifiante" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.40">
     <div class="product-image">
         <img src="images/IMG_2175.jpg" alt="Venus Viderm Mousse Nettoyante Purifiante">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Viderm - Mousse Nettoyante Purifiante 150 ml</h3>
-        <p class="description">Mousse nettoyante purifiante sans sulfates - Peau sèche</p>
+        <h3>Venus Viderm - Mousse Nettoyante Purifiante</h3>
+        <p class="description">Peau sèche 150 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,40 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1566,14 +1860,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="venus viderm gel nettoyant purifiant" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Viderm Gel Nettoyant Purifiant" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_2176.jpg" alt="Venus Viderm Gel Nettoyant Purifiant">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Viderm - Gel Nettoyant Purifiant 150ml</h3>
-        <p class="description">Gel nettoyant purifiant - Peaux mixtes à grasses</p>
+        <h3>Venus Viderm - Gel Nettoyant Purifiant</h3>
+        <p class="description">Peaux mixtes à grasses 150 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1581,14 +1879,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 1 -->
-<article class="product" data-name="brilex azura lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Azura Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1976.jpg" alt="Brilex Azura Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Azura - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Azura</p>
+        <h3>Brilex - Azura</h3>
+        <p class="description">Lave-sol Azura 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1596,14 +1898,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="brilex bonjour lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Bonjour Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1977.jpg" alt="Brilex Bonjour Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Bonjour - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Bonjour</p>
+        <h3>Brilex - Bonjour</h3>
+        <p class="description">Lave-sol Bonjour 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1611,14 +1917,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="brilex fraîcheur pure lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Fraîcheur Pure Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1978.jpg" alt="Brilex Fraîcheur Pure Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Fraîcheur Pure - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Fraîcheur Pure</p>
+        <h3>Brilex - Fraîcheur Pure</h3>
+        <p class="description">Lave-sol Fraîcheur Pure 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1626,14 +1936,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="brilex emotion lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Emotion Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1979.jpg" alt="Brilex Emotion Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Emotion - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Emotion</p>
+        <h3>Brilex - Emotion</h3>
+        <p class="description">Lave-sol Emotion 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1641,14 +1955,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="brilex desert rose lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Desert Rose Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1980.jpg" alt="Brilex Desert Rose Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Desert Rose - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Desert Rose</p>
+        <h3>Brilex - Desert Rose</h3>
+        <p class="description">Lave-sol Desert Rose 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1656,14 +1974,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="brilex zen lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Zen Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1981.jpg" alt="Brilex Zen Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Zen - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Zen</p>
+        <h3>Brilex - Zen</h3>
+        <p class="description">Lave-sol Zen 1 L</p>
         <div class="colisage">Carton - 12 pièces</div> 
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1671,14 +1993,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="brilex champs de bonheur lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Champs de Bonheur Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1983.jpg" alt="Brilex Champs de Bonheur Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Champs de Bonheur - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Champs de Bonheur</p>
+        <h3>Brilex - Champs de Bonheur</h3>
+        <p class="description">Lave-sol Champs de Bonheur 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1686,14 +2012,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="brilex softy lave sol" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Softly Lave Sol" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1984.jpg" alt="Brilex Softly Lave Sol">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Softly - Lave Sol 1L</h3>
-        <p class="description">Nettoyant lave-sol Softly</p>
+        <h3>Brilex - Softly</h3>
+        <p class="description">Lave-sol Softly 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -1701,37 +2031,49 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="brilex dégraissant professionnel" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Dégraissant Professionnel" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.80">
     <div class="product-image">
         <img src="images/IMG_1987.PNG" alt="Brilex Dégraissant Professionnel">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Dégraissant Professionnel</h3>
+        <h3>Brilex - Dégraissant 950ml</h3>
         <p class="description">Dégraissant professionnel 950ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,70 € <small>HT</small></div>
+        <div class="price">1,80 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="brilex dégraissant professionnel parfumé" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Dégraissant Professionnel Parfumé" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.25">
     <div class="product-image">
         <img src="images/IMG_1994.jpg" alt="Brilex Dégraissant Professionnel Parfumé">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Dégraissant Professionnel</h3>
+        <h3>Brilex - Dégraissant 500ml</h3>
         <p class="description">Dégraissant professionnel 500ml</p>
         <div class="colisage">Carton - 15 pièces</div>
-        <div class="price">1,20 € <small>HT</small></div>
+        <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 1 -->
-<article class="product" data-name="brilex nettoyant salle de bain" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Nettoyant Salle de Bain" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.70">
     <div class="product-image">
         <img src="images/IMG_1988.PNG" alt="Brilex Nettoyant Salle de Bain">
     </div>
@@ -1740,49 +2082,61 @@ footer p {
         <h3>Brilex - Nettoyant Salle de Bain</h3>
         <p class="description">Nettoyant salle de bain - 950 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,70 € <small>HT</small></div>
+        <div class="price">1,80 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="brilex adoucissant linge instant magique" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Adoucissant Linge Instant Magique" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.60">
     <div class="product-image">
         <img src="images/IMG_1996.JPG" alt="Brilex Adoucissant Instant Magique">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Adoucissant Linge</h3>
-        <p class="description">Instant Magique - 1,2 L</p>
+        <h3>Brilex - Instant Magique</h3>
+        <p class="description">Adoucissant Linge - 1,2 L</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,60 € <small>HT</small></div>
+        <div class="price">1,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="brilex adoucissant linge moment d'evasion" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Adoucissant Linge Moment d'Évasion" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.60">
     <div class="product-image">
         <img src="images/IMG_1997.WEBP" alt="Brilex Adoucissant Moment d'Évasion">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Adoucissant Linge</h3>
-        <p class="description">Moment d'Évasion - 1,2 L</p>
+        <h3>Brilex - Moment d'Évasion</h3>
+        <p class="description">Adoucissant Linge - 1,2 L</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,60 € <small>HT</small></div>
+        <div class="price">1,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="brilex savon liquide marine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Savon Liquide Marine" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.80">
     <div class="product-image">
         <img src="images/IMG_2011.WEBP" alt="Brilex Savon Liquide Marine">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon Liquide</h3>
+        <h3>Brilex - Savon Liquide Marine</h3>
         <p class="description">Marine - 400 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
@@ -1791,13 +2145,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="brilex savon liquide mojito" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Savon Liquide Mojito" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.80">
     <div class="product-image">
         <img src="images/IMG_2012.WEBP" alt="Brilex Savon Liquide Mojito">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon Liquide</h3>
+        <h3>Brilex - Savon Liquide Mojito</h3>
         <p class="description">Mojito - 400 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
@@ -1806,13 +2164,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="brilex savon liquide framboise" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex savon liquide framboise" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.80">
     <div class="product-image">
         <img src="images/IMG_2013.WEBP" alt="Brilex Savon Liquide Framboise">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon Liquide</h3>
+        <h3>Brilex - Savon Liquide Framboise</h3>
         <p class="description">Framboise - 400 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
@@ -1821,13 +2183,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="brilex savon liquide musk" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex savon liquide musk" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.80">
     <div class="product-image">
         <img src="images/IMG_2014.WEBP" alt="Brilex Savon Liquide Musk">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon Liquide</h3>
+        <h3>Brilex - Savon Liquide Musk</h3>
         <p class="description">Musk - 400 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
@@ -1836,13 +2202,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="brilex savon liquide douceur cremeuse" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex savon liquide douceur cremeuse" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.80">
     <div class="product-image">
         <img src="images/IMG_2015.WEBP" alt="Brilex Savon Liquide Douceur Crémeuse">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon Liquide</h3>
+        <h3>Brilex - Savon Liquide Douceur Crémeuse</h3>
         <p class="description">Douceur Crémeuse - 400 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
@@ -1851,13 +2221,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="brilex savon liquide peche" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex savon liquide peche" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.80">
     <div class="product-image">
         <img src="images/IMG_2016.WEBP" alt="Brilex Savon Liquide Pêche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon Liquide</h3>
+        <h3>Brilex - Savon Liquide Pêche</h3>
         <p class="description">Pêche - 400 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
@@ -1866,13 +2240,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="brilex savon liquide childhood" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex savon liquide childhood" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="0.80">
     <div class="product-image">
         <img src="images/IMG_2017.WEBP" alt="Brilex Savon Liquide Childhood">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon Liquide</h3>
+        <h3>Brilex - Savon Liquide Childhood</h3>
         <p class="description">Childhood - 400 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
@@ -1880,13 +2258,17 @@ footer p {
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="brilex lave sol sanisol lavande" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lave sol sanisol lavande" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.10">
     <div class="product-image">
         <img src="images/S1.PNG" alt="Brilex Sanisol Lavande">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Sanisol</h3>
+        <h3>Brilex - Sanisol Lavande</h3>
         <p class="description">Lavande - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
@@ -1895,13 +2277,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="brilex lave sol sanisol marine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lave sol sanisol marine" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.10">
     <div class="product-image">
         <img src="images/S2.PNG" alt="Brilex Sanisol Marine">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Sanisol</h3>
+        <h3>Brilex - Sanisol Marine</h3>
         <p class="description">Marine - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
@@ -1910,13 +2296,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="brilex lave sol sanisol jasmin" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lave sol sanisol jasmin" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.10">
     <div class="product-image">
         <img src="images/S3.PNG" alt="Brilex Sanisol Jasmin">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Sanisol</h3>
+        <h3>Brilex - Sanisol Jasmin</h3>
         <p class="description">Jasmin - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
@@ -1925,13 +2315,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="brilex lave sol sanisol mille et une nuits" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lave sol sanisol mille et une nuits" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.10">
     <div class="product-image">
         <img src="images/S4.PNG" alt="Brilex Sanisol Mille et Une Nuits">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Sanisol</h3>
+        <h3>Brilex - Sanisol Mille et Une Nuits</h3>
         <p class="description">Mille et Une Nuits - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
@@ -1940,13 +2334,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="brilex lave sol sanisol rose" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lave sol sanisol rose" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.10">
     <div class="product-image">
         <img src="images/S5.PNG" alt="Brilex Sanisol Rose">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Sanisol</h3>
+        <h3>Brilex - Sanisol Rose</h3>
         <p class="description">Rose - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
@@ -1955,13 +2353,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="brilex lave sol sanisol fleur blanche" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lave sol sanisol fleur blanche" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.10">
     <div class="product-image">
         <img src="images/S6.PNG" alt="Brilex Sanisol Fleur Blanche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Sanisol</h3>
+        <h3>Brilex - Sanisol Fleur Blanche</h3>
         <p class="description">Fleur Blanche - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
@@ -1970,7 +2372,11 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="brilex polish depoussierant bois cuir" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex polish depoussierant bois cuir" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="oui"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_1985.PNG" alt="Brilex Polish Dépoussiérant Bois et Cuir">
     </div>
@@ -1979,13 +2385,17 @@ footer p {
         <h3>Brilex - Polish Dépoussiérant</h3>
         <p class="description">Bois & Cuir - 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,00 € <small>HT</small></div>
+        <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="brilex degraissant nettoyant vinaigre blanc" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex degraissant nettoyant vinaigre blanc" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="oui"
+    data-promo-price="1.20">
     <div class="product-image">
         <img src="images/IMG_1989.PNG" alt="Brilex Dégraissant Nettoyant Vinaigre Blanc">
     </div>
@@ -1994,19 +2404,23 @@ footer p {
         <h3>Brilex - Dégraissant Nettoyant</h3>
         <p class="description">Vinaigre Blanc - 650 ml</p>
         <div class="colisage">Carton - 15 pièces</div>
-        <div class="price">1,20 € <small>HT</small></div>
+        <div class="price">1,30 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="amir clean lave sol fleur blanche" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="amir lave sol fleur blanche" data-category="Hygiène Nouveautés" 
+data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.40">
     <div class="product-image">
         <img src="images/IMG_1990.PNG" alt="Amir Clean Lave Sol Fleur Blanche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Amir Clean - Lave Sol</h3>
+        <h3>Amir Clean - Lave Sol </h3>
         <p class="description">Fleur Blanche - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,40 € <small>HT</small></div>
@@ -2015,13 +2429,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="brilex deboucheur canalisation" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex deboucheur canalisation" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui" 
+    data-promo="non" 
+    data-promo-price="1.40">
     <div class="product-image">
         <img src="images/IMG_1991.PNG" alt="Brilex Déboucheur Canalisation">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Déboucheur</h3>
+        <h3>Brilex - Déboucheur poudre</h3>
         <p class="description">Canalisation - 300 g</p>
         <div class="colisage">Carton - 15 pièces</div>
         <div class="price">1,40 € <small>HT</small></div>
@@ -2029,7 +2447,11 @@ footer p {
     </div>
 </article>
         <!-- PRODUIT 11 -->
-        <article class="product" data-name="brilex lave vitre" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex lave vitre" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18"
+            data-stock="oui"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/IMG_1992.PNG" alt="Brilex Lave Vitre">
             </div>
@@ -2044,22 +2466,30 @@ footer p {
         </article>
 
         <!-- PRODUIT 12 -->
-        <article class="product" data-name="brilex maxi liquide vaisselle" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex maxi liquide vaisselle" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18"
+            data-stock="oui"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/IMG_1995.PNG" alt="Brilex Maxi Liquide Vaisselle">
             </div>
             <div class="product-info">
                 <span class="badge">NOUVEAUTÉ</span>
-                <h3>Brilex Maxi - Liquide Vaisselle</h3>
-                <p class="description">Liquide Vaisselle - 1 025 ml</p>
+                <h3>Brilex - Liquide Vaisselle 1025 ml</h3>
+                <p class="description">Liquide Vaisselle - 1025 ml</p>
                 <div class="colisage">Carton - 12 pièces</div>
-                <div class="price">1,20 € <small>HT</small></div>
+                <div class="price">1,30 € <small>HT</small></div>
                 <a class="whatsapp" href="#">Commander sur WhatsApp</a>
             </div>
         </article>
 
         <!-- PRODUIT 13 -->
-        <article class="product" data-name="brilex nedhaf deboucheur" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex nedhaf deboucheur" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18" 
+            data-stock="oui"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/IMG_2009.PNG" alt="Brilex Nedhaf Déboucheur">
             </div>
@@ -2074,7 +2504,11 @@ footer p {
         </article>
 
         <!-- PRODUIT 14 -->
-        <article class="product" data-name="brilex eau de javel" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex eau de javel" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18" 
+            data-stock="oui"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/IMG_2010.PNG" alt="Brilex Eau de Javel">
             </div>
@@ -2083,19 +2517,23 @@ footer p {
                 <h3>Brilex - Eau de Javel</h3>
                 <p class="description">Eau de Javel - 900 ml</p>
                 <div class="colisage">Carton - 12 pièces</div> 
-                <div class="price">1,00 € <small>HT</small></div>
+                <div class="price">1,10 € <small>HT</small></div>
                 <a class="whatsapp" href="#">Commander sur WhatsApp</a>
             </div>
         </article>
 
         <!-- PRODUIT 15 -->
-        <article class="product" data-name="brilex lessive gel machine dream lavande" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex lessive gel machine dream lavande" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/IMG_2056.JPG" alt="Brilex Dream Lavande">
             </div>
             <div class="product-info">
                 <span class="badge">NOUVEAUTÉ</span>
-                <h3>Brilex - Dream Lavande</h3>
+                <h3>Brilex - Dream Lavande 5 L</h3>
                 <p class="description">Gel Machine - 5 L - 74 lavages</p>
                 <div class="colisage">Carton - 3 pièces</div>
                 <div class="price">4,50 € <small>HT</small></div>
@@ -2104,13 +2542,17 @@ footer p {
         </article>
 
         <!-- PRODUIT 16 -->
-        <article class="product" data-name="brilex lessive gel machine passion" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex lessive gel machine passion" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="4.00">
             <div class="product-image">
                 <img src="images/IMG_2060.JPG" alt="Brilex Passion">
             </div>
             <div class="product-info">
                 <span class="badge">NOUVEAUTÉ</span>
-                <h3>Brilex - Passion</h3>
+                <h3>Brilex - Passion 5 L</h3>
                 <p class="description">Gel Machine - 5 L - 74 lavages</p>
                 <div class="colisage">Carton - 3 pièces</div>
                 <div class="price">4,50 € <small>HT</small></div>
@@ -2119,13 +2561,17 @@ footer p {
         </article>
 
         <!-- PRODUIT 17 -->
-        <article class="product" data-name="brilex lessive gel machine paradise" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex lessive gel machine paradise" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/IMG_2061.WEBP" alt="Brilex Paradise">
             </div>
             <div class="product-info">
                 <span class="badge">NOUVEAUTÉ</span>
-                <h3>Brilex - Paradise</h3>
+                <h3>Brilex - Paradise 5 L</h3>
                 <p class="description">Gel Machine - 5 L - 74 lavages</p>
                 <div class="colisage">Carton - 3 pièces</div>
                 <div class="price">4,50 € <small>HT</small></div>
@@ -2134,13 +2580,17 @@ footer p {
         </article>
 
         <!-- PRODUIT 18 -->
-        <article class="product" data-name="brilex lessive gel machine force bleue" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex lessive gel machine force bleue" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/IMG_2062.JPG" alt="Brilex Force Bleue">
             </div>
             <div class="product-info">
                 <span class="badge">NOUVEAUTÉ</span>
-                <h3>Brilex - Force Bleue</h3>
+                <h3>Brilex - Force Bleue 5 L</h3>
                 <p class="description">Gel Machine - 5 L - 74 lavages</p>
                 <div class="colisage">Carton - 3 pièces</div>
                 <div class="price">4,50 € <small>HT</small></div>
@@ -2149,13 +2599,17 @@ footer p {
         </article>
 
         <!-- PRODUIT 19 -->
-        <article class="product" data-name="brilex lessive gel machine delicatesse" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex lessive gel machine delicatesse" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/A1.PNG" alt="Brilex Délicatesse">
             </div>
             <div class="product-info">
                 <span class="badge">NOUVEAUTÉ</span>
-                <h3>Brilex - Délicatesse</h3>
+                <h3>Brilex - Délicatesse 5 L</h3>
                 <p class="description">Gel Machine - 5 L - 74 lavages</p>
                 <div class="colisage">Carton - 3 pièces</div>
                 <div class="price">4,50 € <small>HT</small></div>
@@ -2164,13 +2618,17 @@ footer p {
         </article>
 
         <!-- PRODUIT 20 -->
-        <article class="product" data-name="brilex lessive gel machine relax" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+        <article class="product" data-name="brilex lessive gel machine relax" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
             <div class="product-image">
                 <img src="images/A2.PNG" alt="Brilex Relax">
             </div>
             <div class="product-info">
                 <span class="badge">NOUVEAUTÉ</span>
-                <h3>Brilex - Relax</h3>
+                <h3>Brilex - Relax 5 L</h3>
                 <p class="description">Gel Machine - 5 L - 74 lavages</p>
                 <div class="colisage">Carton - 3 pièces</div>
                 <div class="price">4,50 € <small>HT</small></div>
@@ -2178,13 +2636,17 @@ footer p {
             </div>
         </article>
         <!-- PRODUIT 11 -->
-<article class="product" data-name="brilex lessive gel machine savon marseille" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lessive gel machine relax" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/Z1.PNG" alt="Brilex Gel Machine Savon de Marseille">
+        <img src="images/Z1.PNG" alt="Brilex Gel Machine Relax">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Relax</h3>
+        <h3>Brilex - Relax 3 L</h3>
         <p class="description">Gel Machine - 3 L - 44 lavages</p>
         <div class="colisage">Carton - 4 pièces</div>
         <div class="price">3,00 € <small>HT</small></div>
@@ -2193,24 +2655,32 @@ footer p {
 </article>
 
 <!-- PRODUIT 12 -->
-<article class="product" data-name="brilex sublime adoucissant linge" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex sublime adoucissant linge" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="oui"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
         <img src="images/Z2.PNG" alt="Brilex Sublime Adoucissant Linge">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Adoucissant Linge</h3>
-        <p class="description">Sublime - 1,2 L</p>
+        <h3>Brilex - Sublime</h3>
+        <p class="description">Adoucissant Linge - 1,2 L</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,60 € <small>HT</small></div>
+        <div class="price">1,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 13 -->
-<article class="product" data-name="brilex lessive gel machine golden touch premium" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lessive gel machine Silver Touch Premium" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/Z3.PNG" alt="Brilex Golden Touch Premium">
+        <img src="images/Z3.PNG" alt="Silver Touch Premium">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
@@ -2223,13 +2693,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 14 -->
-<article class="product" data-name="brilex lessive gel machine dream lavande" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lessive gel machine force bleu" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/Z4.PNG" alt="Brilex Dream Lavande">
+        <img src="images/Z4.PNG" alt="Brilex Force Bleu">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Force Bleu</h3>
+        <h3>Brilex - Force Bleu 3 L</h3>
         <p class="description">Gel Machine - 3 L - 44 lavages</p>
         <div class="colisage">Carton - 4 pièces</div>
         <div class="price">3,00 € <small>HT</small></div>
@@ -2238,28 +2712,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 15 -->
-<article class="product" data-name="brilex lessive blue power gel machine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lessive golden touch gel machine" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/Z5.PNG" alt="Brilex Blue Power">
+        <img src="images/Z5.PNG" alt="Brilex Golden Touch Premium">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
         <h3>Brilex - Golden Touch Premium</h3>
-        <p class="description">Gel Machine - 3 L - 44 lavages</p>
-        <div class="colisage">Carton - 4 pièces</div>
-        <div class="price">3,00 € <small>HT</small></div>
-        <a class="whatsapp" href="#">Commander sur WhatsApp</a>
-    </div>
-</article>
-
-<!-- PRODUIT 16 -->
-<article class="product" data-name="brilex lessive silver touch premium gel machine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
-    <div class="product-image">
-        <img src="images/IMG_2063.JPG" alt="Brilex Silver Touch Premium">
-    </div>
-    <div class="product-info">
-        <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Blue Power</h3>
         <p class="description">Gel Machine - 3 L - 44 lavages</p>
         <div class="colisage">Carton - 4 pièces</div>
         <div class="price">3,50 € <small>HT</small></div>
@@ -2267,14 +2730,37 @@ footer p {
     </div>
 </article>
 
-<!-- PRODUIT 17 -->
-<article class="product" data-name="brilex lessive paradise gel machine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<!-- PRODUIT 16 -->
+<article class="product" data-name="brilex lessive Blue powergel machine" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/IMG_2065.WEBP" alt="Brilex Paradise">
+        <img src="images/IMG_2063.JPG" alt="Brilex Blue Power">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Savon de Marseille</h3>
+        <h3>Brilex - Blue Power 3 L</h3>
+        <p class="description">Gel Machine - 3 L - 44 lavages</p>
+        <div class="colisage">Carton - 4 pièces</div>
+        <div class="price">3,20 € <small>HT</small></div>
+        <a class="whatsapp" href="#">Commander sur WhatsApp</a>
+    </div>
+</article>
+
+<!-- PRODUIT 17 -->
+<article class="product" data-name="brilex lessive savon de marseille gel machine" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
+    <div class="product-image">
+        <img src="images/IMG_2065.WEBP" alt="Brilex Savon de Marseille">
+    </div>
+    <div class="product-info">
+        <span class="badge">NOUVEAUTÉ</span>
+        <h3>Brilex - Savon de Marseille 3 L</h3>
         <p class="description">Gel Machine - 3 L - 44 lavages</p>
         <div class="colisage">Carton - 4 pièces</div>
         <div class="price">3,00 € <small>HT</small></div>
@@ -2283,13 +2769,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 18 -->
-<article class="product" data-name="brilex lessive dream lavande gel machine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lessive dream lavande gel machine" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2066.JPG" alt="Brilex Dream Lavande">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Dream Lavande</h3>
+        <h3>Brilex - Dream Lavande 3 L</h3>
         <p class="description">Gel Machine - 3 L - 44 lavages</p>
         <div class="colisage">Carton - 4 pièces</div>
         <div class="price">3,00 € <small>HT</small></div>
@@ -2298,13 +2788,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 19 -->
-<article class="product" data-name="brilex lessive delicatesse gel machine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lessive paradise gel machine" data-category="Hygiène Nouveautés" 
+            data-added="2026-08-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/IMG_2068.JPG" alt="Brilex Délicatesse">
+        <img src="images/IMG_2068.JPG" alt="Brilex paradise">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Delicatesse</h3>
+        <h3>Brilex - Paradise 3 L</h3>
         <p class="description">Gel Machine - 3 L - 44 lavages</p>
         <div class="colisage">Carton - 4 pièces</div>
         <div class="price">3,00 € <small>HT</small></div>
@@ -2313,13 +2807,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 20 -->
-<article class="product" data-name="brilex lessive relax gel machine" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lessive delicatesse gel machine" data-category="Hygiène Nouveautés" 
+            data-added="2026-06-18" 
+            data-stock="non"
+            data-promo="non"
+            data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/IMG_2073.PNG" alt="Brilex Relax">
+        <img src="images/IMG_2073.PNG" alt="Brilex Delicatesse">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex - Relax</h3>
+        <h3>Brilex - Delicatesse 3 L</h3>
         <p class="description">Gel Machine - 3 L - 44 lavages</p>
         <div class="colisage">Carton - 4 pièces</div>
         <div class="price">3,00 € <small>HT</small></div>
@@ -2327,14 +2825,18 @@ footer p {
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="the best shower gel douche tropical coco" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="the best shower gel douche tropical coco" data-category="Cosmétiques Nouveautés"
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E1.PNG" alt="The Best Shower Gel Douche Tropical Coco">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>The Best Shower - Gel Douche</h3>
-    <p class="description">Tropical Coco - 750 ml</p>
+    <h3>The Best Shower - Tropical Coco</h3>
+    <p class="description">Gel douche - Tropical Coco 750 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,40 € <small>HT</small></div>
     <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -2342,13 +2844,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="dove gel douche douche soin nutrition intense" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dove gel douche douche soin nutrition intense" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18"
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E2.PNG" alt="Dove Douche Soin Nutrition Intense">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Dove - Douche Soin</h3>
+    <h3>Dove - Gel Douche Nutrition</h3>
     <p class="description">Nutrition Intense - 250 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,20 € <small>HT</small></div>
@@ -2357,13 +2863,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="the best shower gel douche abricot" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="the best shower gel douche abricot" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E3.PNG" alt="The Best Shower Gel Douche Abricot">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>The Best Shower - Gel Douche</h3>
+    <h3>The Best Shower - Abricot</h3>
     <p class="description">Abricot - 750 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,40 € <small>HT</small></div>
@@ -2372,13 +2882,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="dove gel douche soin revitalisant grenade hibiscus" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dove gel douche soin revitalisant grenade hibiscus" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E4.PNG" alt="Dove Douche Soin Revitalisant">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Dove - Douche Soin</h3>
+    <h3>Dove - Gel Douche Revitalisant</h3>
     <p class="description">Grenade & Thé d'Hibiscus - 250 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,20 € <small>HT</small></div>
@@ -2387,13 +2901,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="the best shower gel douche peach" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="the best shower gel douche peach" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E5.PNG" alt="The Best Shower Gel Douche Peach">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>The Best Shower - Gel Douche</h3>
+    <h3>The Best Shower - Peach</h3>
     <p class="description">Peach - 750 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,40 € <small>HT</small></div>
@@ -2402,13 +2920,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="dove gel douche secrets de soin avoine miel" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dove gel douche secrets de soin avoine miel" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E6.PNG" alt="Dove Secrets de Soin Avoine et Miel">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Dove - Gel Douche</h3>
+    <h3>Dove - Gel Douche Rituel soin</h3>
     <p class="description">Lait d'Avoine & Miel - 250 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,20 € <small>HT</small></div>
@@ -2417,13 +2939,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="the best shower gel douche caramel" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="the best shower gel douche caramel" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E7.PNG" alt="The Best Shower Gel Douche Caramel">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>The Best Shower - Gel Douche</h3>
+    <h3>The Best Shower - Caramel</h3>
     <p class="description">Caramel - 750 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,40 € <small>HT</small></div>
@@ -2432,14 +2958,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="the best shower gel douche banana" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="the best shower gel douche banana" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E8.PNG" alt="The Best Shower Gel Douche Banana">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>The Best Shower - Gel Douche</h3>
-    <p class="description">Banana - 750 ml</p>
+    <h3>The Best Shower - Banane</h3>
+    <p class="description">Banane - 750 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,40 € <small>HT</small></div>
     <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -2447,13 +2977,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="the best shower gel douche vanilla cream" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="the best shower gel douche vanilla cream" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E9.PNG" alt="The Best Shower Gel Douche Vanilla Cream">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>The Best Shower - Gel Douche</h3>
+    <h3>The Best Shower - Vanille</h3>
     <p class="description">Vanilla Cream - 750 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,40 € <small>HT</small></div>
@@ -2462,13 +2996,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="dove gel douche soin hydratant karite vanille" data-category="Cosmétiques Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dove gel douche soin hydratant karite vanille" data-category="Cosmétiques Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/E10.PNG" alt="Dove Gel Douche Soin Hydratant Karité Vanille">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Dove - Gel Douche</h3>
+    <h3>Dove - Gel Douche Hydratant</h3>
     <p class="description">Karité & Vanille - 250 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,20 € <small>HT</small></div>
@@ -2476,7 +3014,11 @@ footer p {
   </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="cotex classic mouchoirs" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex classic mouchoirs" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/Q3.PNG" alt="Cotex Classic Mouchoirs">
     </div>
@@ -2491,13 +3033,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="cotex pro papier hygienique" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex pro papier hygienique" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/Q2.PNG" alt="Cotex Pro Papier Hygiénique">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex Pro - Papier Hygiénique</h3>
+        <h3>Cotex Pro - Papier Hygiénique x16</h3>
         <p class="description">Pack 16 rouleaux</p>
         <div class="colisage">Paquet x 3 pièces</div>
         <div class="price">1,80 € <small>HT</small></div>
@@ -2506,13 +3052,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="cotex confort papier hygienique" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex confort papier hygienique" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/Q4.PNG" alt="Cotex Confort Papier Hygiénique">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex Confort - Papier Hygiénique</h3>
+        <h3>Cotex Confort - Papier Hygiénique x12</h3>
         <p class="description">Pack 12 rouleaux</p>
         <div class="colisage">Paquet x 3 pièces</div>
         <div class="price">1,70 € <small>HT</small></div>
@@ -2521,13 +3071,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="cotex confort papier hygienique" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex confort papier hygienique" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2136.jpg" alt="Cotex Confort Papier Hygiénique">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex Confort - Papier Hygiénique</h3>
+        <h3>Cotex Confort - Papier Hygiénique x4</h3>
         <p class="description">Pack 4 rouleaux</p>
         <div class="colisage">Paquet - 15 pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
@@ -2536,13 +3090,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="cotex plus essuie tout" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex plus essuie tout" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2137.jpg" alt="Cotex Plus Essuie-Tout">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex Plus - Essuie-Tout</h3>
+        <h3>Cotex Plus - Essuie-Tout x4</h3>
         <p class="description">Pack 4 rouleaux</p>
         <div class="colisage">Paquet - 6 pièces</div> 
         <div class="price">1,90 € <small>HT</small></div>
@@ -2551,13 +3109,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="cotex classic essuie tout" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex classic essuie tout" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2138.jpg" alt="Cotex Classic Essuie-Tout">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex Classic - Essuie-Tout</h3>
+        <h3>Cotex Classic - Essuie-Tout x2</h3>
         <p class="description">Pack 2 rouleaux</p>
         <div class="colisage">Paquet - 10 pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
@@ -2566,13 +3128,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="awane ultra fit serviettes hygieniques" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="awane ultra fit serviettes hygieniques" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2158.jpg" alt="Awane Ultra Fit Serviettes Hygiéniques">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Awane Ultra Fit - Serviettes Hygiéniques</h3>
+        <h3>Awane Ultra Fit - Serviettes Hygiéniques x9</h3>
         <p class="description">Normales - 9 serviettes</p>
         <div class="colisage">Carton - .. pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
@@ -2581,163 +3147,207 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="awane days protege slips" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="awane days protege slips" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2159.jpg" alt="Awane Days Protège-Slips">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Awane Days - Protège-Slips</h3>
+        <h3>Awane Days - Protège-Slips x20</h3>
         <p class="description">20 protège-slips</p>
-        <div class="colisage">Carton - .. pièces</div>
+        <div class="colisage">Carton - 24 pièces</div>
         <div class="price">0,80 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="awane ultra fit serviettes hygieniques" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="awane coton serviettes hygieniques" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
-        <img src="images/IMG_2161.jpg" alt="Awane Ultra Fit Serviettes Hygiéniques">
+        <img src="images/IMG_2161.jpg" alt="Awane Coton Serviettes Hygiéniques">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Awane Ultra Fit - Serviettes Hygiéniques</h3>
-        <p class="description">Normales - 9 serviettes</p>
-        <div class="colisage">Carton - .. pièces</div>
+        <h3>Awane Coton - Serviettes Hygiéniques x7</h3>
+        <p class="description">Normales - 7 serviettes</p>
+        <div class="colisage">Carton - 12 pièces</div>
         <div class="price">0,90 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="cotex mouchoirs boite" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex mouchoirs boite" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/Q1.PNG" alt="Cotex Mouchoirs Boîte">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex - Mouchoirs</h3>
+        <h3>Cotex - Boite Mouchoirs x3</h3>
         <p class="description">Lot de 3 boîtes - 100 mouchoirs par boîte</p>
-        <div class="colisage">Carton - 4 x 3 pièces</div>
-        <div class="price">1,65 € <small>HT</small></div>
+        <div class="colisage">Carton - 12 pièces</div>
+        <div class="price">0,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-category="Alimentation Nouveautés" data-name="huile olive vierge 0.5 litre" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-category="Alimentation Nouveautés" data-name="huile olive vierge 0.5 litre" 
+    data-added="2026-08-18" 
+    data-stock="oui" 
+    data-promo="oui"
+    data-promo-price="3.30">
     <div class="product-image">
         <img src="images/H1.PNG" alt="Huile d'Olive Vierge 0,5 L">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Huile d'Olive Vierge</h3>
-        <p class="description">En Verre - 0,5 L</p>
+        <h3>Huile d'Olive 500 ml Verre</h3>
+        <p class="description">Vierge En Verre - 0,5 L</p>
         <div class="colisage">Carton - 15 pièces</div>
-        <div class="price">3,30 € <small>HT</small></div>
+        <div class="price">3,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="huile olive vierge 0.75 litre" data-category="Alimentation Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="huile olive vierge 0.75 litre" data-category="Alimentation Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="oui"
+    data-promo-price="4.50">
     <div class="product-image">
         <img src="images/H2.PNG" alt="Huile d'Olive Vierge 0,75 L">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Huile d'Olive Vierge</h3>
-        <p class="description">En Verre - 0,75 L</p>
+        <h3>Huile d'Olive 750 ml Verre</h3>
+        <p class="description">Vierge En Verre - 0,75 L</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">4,50 € <small>HT</small></div>
+        <div class="price">4,80 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="lorage clean nettoyant hygienien desinfecteur 3 en 1" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage clean nettoyant hygienien desinfecteur 3 en 1" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2134.jpg" alt="L'Orage Clean Nettoyant Hygiénien Désinfecteur">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Clean - Désinfecteur</h3>
-        <p class="description">Nettoyant hygiénien 3 en 1 - 500 ml</p>
+        <h3>L'Orage Clean - Nettoyant frigo</h3>
+        <p class="description">Nettoyant Antibacterien 3 en 1 - 500 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,30 € <small>HT</small></div>
+        <div class="price">1,40 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="lorage evasion caribbean discovery" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage evasion caribbean discovery" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2139.jpg" alt="L'Orage Évasion Caribbean Discovery">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Évasion 300 ml</h3>
-        <p class="description">Caribbean Discovery</p>
+        <h3>L'Orage - Caribbean Discovery</h3>
+        <p class="description">Caribbean Discovery 300 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="lorage evasion zanzibar scents" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage evasion zanzibar scents" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2140.jpg" alt="L'Orage Évasion Zanzibar Scents">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Évasion 300 ml</h3>
-        <p class="description">Zanzibar Scents</p>
+        <h3>L'Orage - Zanzibar Scents</h3>
+        <p class="description">Zanzibar Scents 300 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="lorage evasion fiji holidays" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage evasion fiji holidays" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2141.jpg" alt="L'Orage Évasion Fiji Holidays">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Évasion 300 ml</h3>
-        <p class="description">Fiji Holidays</p>
+        <h3>L'Orage - Fiji Holidays</h3>
+        <p class="description">Fiji Holidays 300 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="lorage evasion nippon sakura" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage evasion nippon sakura" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2142.jpg" alt="L'Orage Évasion Nippon Sakura">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Évasion 300 ml</h3>
-        <p class="description">Nippon Sakura</p>
+        <h3>L'Orage - Nippon Sakura</h3>
+        <p class="description">Nippon Sakura 300 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="lorage evasion isfahan dream" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage evasion isfahan dream" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2143.jpg" alt="L'Orage Évasion Isfahan Dream">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Évasion 300 ml</h3>
-        <p class="description">Isfahan Dream</p>
+        <h3>L'Orage - Isfahan Dream</h3>
+        <p class="description">Isfahan Dream 300 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -2745,110 +3355,146 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="lorage nada jasmin" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage nada jasmin" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2144.jpg" alt="L'Orage Nada Jasmin">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430 ml</h3>
-        <p class="description">Jasmin</p>
+        <h3>L'Orage Nada - Jasmin</h3>
+        <p class="description">Jasmin 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="lorage nada Océane" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage nada Océane" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2145.jpg" alt="L'Orage Nada Océane">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430 ml</h3>
-        <p class="description">Océane</p>
+        <h3>L'Orage Nada - Océane</h3>
+        <p class="description">Océane 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="lorage nada Fruitée" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage nada Fruitée" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2146.jpg" alt="L'Orage Nada Fruitée">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430ml</h3>
-        <p class="description">Fruitée</p>
+        <h3>L'Orage Nada - Fruitée</h3>
+        <p class="description">Fruitée 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="lorage nada Lavande" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage nada Lavande" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2147.jpg" alt="L'Orage Nada Lavande">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430ml</h3>
-        <p class="description">Lavande</p>
+        <h3>L'Orage Nada - Lavande</h3>
+        <p class="description">Lavande 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="lorage nada Oriental" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage nada Oriental" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2148.jpg" alt="L'Orage Nada Oriental">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430ml</h3>
-        <p class="description">Oriental</p>
+        <h3>L'Orage Nada - Oriental</h3>
+        <p class="description">Oriental 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="lorage nada Ozone" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage nada Ozone" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2149.jpg" alt="L'Orage Nada Ozone">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430ml</h3>
-        <p class="description">Ozone</p>
+        <h3>L'Orage Nada - Ozone</h3>
+        <p class="description">Ozone 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="lorage nada Chocolat" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="lorage nada Chocolat" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2150.jpg" alt="L'Orage Nada Chocolat">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430ml</h3>
-        <p class="description">Chocolat</p>
+        <h3>L'Orage Nada - Chocolat</h3>
+        <p class="description">Chocolat 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
-</article><article class="product" data-name="lorage nada Printemps" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+</article><article class="product" data-name="lorage nada Printemps" data-category="Hygiène Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2151.jpg" alt="L'Orage Nada Printemps">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Orage Nada 430ml</h3>
-        <p class="description">Printemps</p>
+        <h3>L'Orage Nada - Printemps</h3>
+        <p class="description">Printemps 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Creme deo" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Sabrinel Crème déodorante" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="oui" 
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2160.jpg" alt="Creme deo">
     </div>
@@ -2857,225 +3503,289 @@ footer p {
         <h3>Sabrinel Crème déodorante 25ml</h3>
         <p class="description">5 Modèles </p>
         <div class="colisage">Boite - 16 pièces</div>
-        <div class="price">1,05 € <small>HT</small></div>
+        <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Huile D'olive" data-category="Alimentation Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Huile D'olive" data-category="Alimentation Nouveautés" 
+    data-added="2026-06-18"
+    data-stock="non"
+    data-promo="oui"
+    data-promo-price="2.90">
     <div class="product-image">
         <img src="images/IMG_2177.jpg" alt="Huile D'olive">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Huile D'olive Vierge </h3>
-        <p class="description">En Plastique - 500ml</p>
+        <h3>Huile D'olive Plastique 500ml</h3>
+        <p class="description">Vierge En Plastique - 500ml</p>
         <div class="colisage">Carton - 15 pièces</div>
-        <div class="price">3,00 € <small>HT</small></div>
+        <div class="price">3,10 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Huile D'olive" data-category="Alimentation Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Huile D'olive" data-category="Alimentation Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2178.jpg  " alt="Huile D'olive">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Huile D'olive Vierge</h3>
-        <p class="description">En Plastique - 1 L</p>
+        <h3>Huile D'olive Plastique 1L</h3>
+        <p class="description">Vierge En Plastique - 1 L</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">5,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Flux Care" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Flux Care" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2179.jpg" alt="Flux Care">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Flux Care Gel douche 245ml</h3>
-        <p class="description">Olive divine</p>
+        <h3>Flux Care - Gel douche Olive </h3>
+        <p class="description">Olive divine 245ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Flux Care" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Flux Care" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2180.jpg" alt="Flux Care">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Flux Care Gel douche 245ml</h3>
-        <p class="description">5 Plantes Précieuses</p>
+        <h3>Flux Care - Gel douche Plantes</h3>
+        <p class="description">5 Plantes Précieuses 245ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Liquide vaissel" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Brilex - Liquide vaissel" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2185.jpg" alt="Liquide vaissel">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Liquide vaissel</h3>
-        <p class="description">600ml</p>
+        <h3>Brilex - Liquide vaissel 600ml</h3>
+        <p class="description">Liquide vaissel 600ml</p>
         <div class="colisage">Carton - 16 pièces</div>
         <div class="price">0,85 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="SAVON" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Abu Saad - Savon Chevre" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2186.jpg" alt="SAVON">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Abu Saad Savon</h3>
+        <h3>Abu Saad - Savon Chèvre</h3>
         <p class="description">Au Lait de chèvre</p>
         <div class="colisage">Boite - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Abu Saad Savon" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Abu Saad - Savon Chamelle" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2187.jpg" alt="SAVON">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Abu Saad Savon</h3>
+        <h3>Abu Saad - Savon Chamelle</h3>
         <p class="description">Au lait de chamelle</p>
         <div class="colisage">Boite - 12 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Shampoing Venus" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Shampoing" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2188.jpg" alt="shampoing Venus">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing MEN 250ml</h3>
-        <p class="description">Antipelliculaire Spiruline</p>
+        <h3>Venus - Shampoing Spiruline </h3>
+        <p class="description">MEN Antipelliculaire Spiruline 250ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
-<article class="product" data-name="Shampoing Venus" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="Venus - Shampoing Charbon" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2189.jpg" alt="shampoing Venus">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Shampoing MEN 250ml</h3>
-        <p class="description">Antipelliculaire Charbon</p>
+        <h3>Venus - Shampoing Charbon</h3>
+        <p class="description">MEN Antipelliculaire Charbon 250ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="dermomed gel douche gel de bain aloe grenade" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dermomed gel douche gel de bain aloe grenade" data-category="Cosmétique Nouveautés"
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P5.PNG" alt="DermoMed Gel de Bain Aloe Grenade">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>DermoMed Gel de Bain 1 L</h3>
-        <p class="description">Aloe et Grenade</p>
+        <h3>DermoMed - Aloe et Grenade</h3>
+        <p class="description">Gel de Bain Aloe et Grenade 1 L</p>
         <div class="colisage">Carton - 6 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="dermomed gel douche gel de bain argan" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dermomed gel douche gel de bain argan" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P9.PNG" alt="DermoMed Gel de Bain Argan">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>DermoMed Gel de Bain 1 L</h3>
-        <p class="description">Argan</p>
+        <h3>DermoMed - Argan</h3>
+        <p class="description">Gel de Bain Argan 1 L</p>
         <div class="colisage">Carton - 6 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="dermomed gel douche gel de bain eau bleue" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dermomed gel douche gel de bain eau bleue" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P6.PNG" alt="DermoMed Gel de Bain Eau Bleue">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>DermoMed Gel de Bain 1 L</h3>
-        <p class="description">Eau Bleue</p>
+        <h3>DermoMed - Eau Bleue</h3>
+        <p class="description">Gel de Bain Eau Bleue 1 L</p>
         <div class="colisage">Carton - 6 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="dermomed gel douche gel de bain fruit du dragon" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dermomed gel douche gel de bain fruit du dragon" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P2.PNG" alt="DermoMed Gel de Bain Fruit du Dragon">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>DermoMed Gel de Bain 1 L</h3>
-        <p class="description">Laiton et Fruit du Dragon</p>
+        <h3>DermoMed - Fruit du Dragon</h3>
+        <p class="description">Gel de Bain Fruit du Dragon 1 L</p>
         <div class="colisage">Carton - 6 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="dermomed gel douche gel de bain frangipanier peche" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="dermomed gel douche gel de bain frangipanier peche" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P7.PNG" alt="DermoMed Gel de Bain Frangipanier Pêche">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>DermoMed Gel de Bain 1 L</h3>
-        <p class="description">Frangipanier et Pêche</p>
+        <h3>DermoMed - Frangipanier Pêche</h3>
+        <p class="description">Gel de Bain Frangipanier Pêche 1 L</p>
         <div class="colisage">Carton - 6 pièces</div>
-        <div class="price">1,50 € <small>HT</small></div>
+        <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="loreal hyaluron expert gel wash" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="loreal hyaluron expert gel wash" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P8.PNG" alt="L'Oréal Hyaluron Expert Gel Wash">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Oréal Hyaluron Expert</h3>
+        <h3>L'Oréal - Hyaluron Expert</h3>
         <p class="description">Gel Wash - 200 ml</p>
         <div class="colisage">Carton - 6 pièces</div>
-        <div class="price">1,00 € <small>HT</small></div>
+        <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="loreal men expert hydra energetic" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="loreal men expert hydra energetic" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P1.PNG" alt="L'Oréal Men Expert Hydra Energetic">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>L'Oréal Men Expert</h3>
+        <h3>L'Oréal - Men Expert</h3>
         <p class="description">Hydra Energetic - Soin Hydratant Anti-Fatigue 24H</p>
         <div class="colisage">Carton - 6 pièces</div>
         <div class="price">2,50 € <small>HT</small></div>
@@ -3084,13 +3794,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="argan oil hair mask" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="argan oil hair mask" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P3.PNG" alt="Argan Oil Hair Mask">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Argan Oil Hair Mask</h3>
+        <h3>Argan Oil - Hair Mask</h3>
         <p class="description">Masque Cheveux à l'Huile d'Argan</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,60 € <small>HT</small></div>
@@ -3099,14 +3813,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="bimbies sensitive lingettes" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="bimbies sensitive lingettes" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/P4.PNG" alt="Bimbies Sensitive Lingettes">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Bimbies Sensitive</h3>
-        <p class="description">60 Lingettes</p>
+        <h3>Bimbies - Lingette Sensitive</h3>
+        <p class="description">60 Lingettes bébé</p>
         <div class="colisage">Carton - 15 pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3114,28 +3832,36 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="bimbies fresh lingettes" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="bimbies fresh lingettes" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/IMG_2239.jpg" alt="Bimbies Fresh Lingettes">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Bimbies Fresh</h3>
-        <p class="description">84 Lingettes</p>
+        <h3>Bimbies - lingette Fresh</h3>
+        <p class="description">84 Lingettes bébé</p>
         <div class="colisage">Carton - 15 pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="venus lingettes bebe soft camomille" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="venus lingettes bebe soft camomille" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W1.PNG" alt="Venus Lingettes Bébé Soft">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Lingettes Bébé</h3>
-        <p class="description">Soft - 72 lingettes</p>
+        <h3>Venus - Lingettes Soft</h3>
+        <p class="description">Soft - 72 lingettes bébé</p>
         <div class="colisage">Carton - 15 pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3143,14 +3869,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="venus lingettes bebe fresh" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="venus lingettes bebe fresh" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W2.PNG" alt="Venus Lingettes Bébé Fresh">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Venus Lingettes Bébé</h3>
-        <p class="description">Fresh - 72 lingettes</p>
+        <h3>Venus - Lingettes Fresh</h3>
+        <p class="description">Fresh - 72 lingettes bébé</p>
         <div class="colisage">Carton - 15 pièces</div>
         <div class="price">0,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3158,14 +3888,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="bimbies sensitive taille 2" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="bimbies sensitive taille 2" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W3.PNG" alt="Bimbies Sensitive Taille 2">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Bimbies Sensitive</h3>
-        <p class="description">Taille 2 - 3 à 6 kg - 12 couches</p>
+        <h3>Bimbies - Couche T2</h3>
+        <p class="description">Sensitive Taille 2 - 3 à 6 kg - 12 couches</p>
         <div class="colisage">Paquet - 10 pièces</div>
         <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3173,14 +3907,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="bimbies sensitive taille 1" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="bimbies sensitive taille 1" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/4.PNG" alt="Bimbies Sensitive Taille 1">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Bimbies Sensitive</h3>
-        <p class="description">Taille 1 - 2 à 5 kg - 12 couches</p>
+        <h3>Bimbies - Sensitive Taille 1</h3>
+        <p class="description">Sensitive Taille 1 - 2 à 5 kg - 12 couches</p>
         <div class="colisage">Paquet - 10 pièces</div>
         <div class="price">1,70 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3188,14 +3926,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="bimbies confort taille 4" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="bimbies confort taille 4" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W5.PNG" alt="Bimbies Confort Taille 4">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Bimbies Confort</h3>
-        <p class="description">Taille 4 - 7 à 16 kg - 22 couches</p>
+        <h3>Bimbies - Confort Taille 4</h3>
+        <p class="description">Confort Taille 4 - 7 à 16 kg - 22 couches</p>
         <div class="colisage">Paquet - 8 pièces</div>
         <div class="price">2,50 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3203,14 +3945,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="bimbies pants taille 4" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="bimbies pants taille 4" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W6.PNG" alt="Bimbies Pants Taille 4">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Bimbies Pants</h3>
-        <p class="description">Taille 4 - 7 à 18 kg - 27 couches</p>
+        <h3>Bimbies - Pants Taille 4</h3>
+        <p class="description">Pants Taille 4 - 7 à 18 kg - 27 couches</p>
         <div class="colisage">Paquet - 3 pièces</div>
         <div class="price">2,80 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3218,14 +3964,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="bimbies confort taille 6" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="bimbies confort taille 6" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W7.PNG" alt="Bimbies Confort Taille 6">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Bimbies Confort</h3>
-        <p class="description">Taille 6 - +16 kg - 10 couches</p>
+        <h3>Bimbies - Confort Taille 6</h3>
+        <p class="description">Confort Taille 6 - +16 kg - 10 couches</p>
         <div class="colisage">Paquet - 8 pièces</div>
         <div class="price">2,00 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3233,14 +3983,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="flux care deodorant algeria edition" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="flux care deodorant algeria edition" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W8.jpg" alt="Flux Care Algeria Edition">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Flux Care Men Edition 250ml</h3>
-        <p class="description">Déodorant Algeria Edition</p>
+        <h3>Flux Care - Déodorant Algeria Edition</h3>
+        <p class="description">Déodorant Algeria Edition 250 ml</p>
         <div class="colisage">Carton - 9 pièces</div>
         <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3248,14 +4002,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="flux care deodorant sandal wood" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="flux care deodorant sandal wood" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W9.jpg" alt="Flux Care Sandal Wood">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Flux Care Men Edition 250ml</h3>
-        <p class="description">Déodorant Sandal-Wood</p>
+        <h3>Flux Care - Déodorant Sandal-Wood</h3>
+        <p class="description">Déodorant Sandal-Wood 250 ml</p>
         <div class="colisage">Carton - 9 pièces</div>
         <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3263,28 +4021,36 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="flux care gel douche sport algeria edition" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="flux care gel douche sport algeria edition" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/W10.PNG" alt="Flux Care Gel Douche Sport">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Flux Care Men Edition 265ml</h3>
-        <p class="description">Gel Douche Sport 3 en 1 - Algeria Edition</p>
+        <h3>Flux Care - Gel Douche Algeria Edition</h3>
+        <p class="description">Gel Douche Sport 3 en 1 - Algeria Edition 265 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,60 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="brilex delicatesse air freshener" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex delicatesse air freshener" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ1.jpg" alt="Brilex Délicatesse">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Délicatesse</h3>
-        <p class="description">Air Freshener - 430 ml</p>
+        <h3>Brilex - Délicatesse Air Freshener</h3>
+        <p class="description">Délicatesse Air Freshener - 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3292,14 +4058,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="brilex nassamat air freshener" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex nassamat air freshener" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ2.jpg" alt="Brilex Nassamat">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Nassamat</h3>
-        <p class="description">Air Freshener - 430 ml</p>
+        <h3>Brilex - Nassamat Air Freshener</h3>
+        <p class="description">Nassamat Air Freshener - 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3307,14 +4077,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="brilex spirit air freshener" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex spirit air freshener" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ3.jpg" alt="Brilex Spirit">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex Spirit</h3>
-        <p class="description">Air Freshener - 430 ml</p>
+        <h3>Brilex - Spirit Air Freshener</h3>
+        <p class="description">Spirit Air Freshener - 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3322,14 +4096,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="brilex lexquis air freshener" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="brilex lexquis air freshener" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ4.jpg" alt="Brilex L'Exquis">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Brilex L'Exquis</h3>
-        <p class="description">Air Freshener - 430 ml</p>
+        <h3>Brilex - L'Exquis Air Freshener</h3>
+        <p class="description">L'Exquis Air Freshener - 430 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,20 € <small>HT</small></div>
         <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3337,13 +4115,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="cotex mega rouleau essuie tout" data-category="Hygiène Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex mega rouleau essuie tout" data-category="Hygiène Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ5.PNG" alt="Cotex Mega Rouleau">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex Mega Rouleau</h3>
+        <h3>Cotex - Mega Rouleau</h3>
         <p class="description">Essuie-tout - 1 Mega rouleau = 4 rouleaux standards</p>
         <div class="colisage">Paquet - 8 pièces</div>
         <div class="price">1,10 € <small>HT</small></div>
@@ -3352,13 +4134,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-name="cotex papier aluminium 100 metres" data-category="Maison & Bazar Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="cotex papier aluminium 100 metres" data-category="Maison & Bazar Nouveautés" 
+    data-added="2026-0§-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ6.PNG" alt="Cotex Papier Aluminium">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Cotex Papier Aluminium</h3>
+        <h3>Cotex - Papier Aluminium</h3>
         <p class="description">Haute résistance - 100 mètres</p>
         <div class="colisage">Carton - 6 pièces</div>
         <div class="price">5,50 € <small>HT</small></div>
@@ -3367,13 +4153,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-name="vivacos dentifrice charbon actif" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="vivacos dentifrice charbon actif" data-category="Cosmétique Nouveautés" 
+    data-added="2026-06-18" 
+    data-stock="non"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ7.PNG" alt="Vivacos Dentifrice Charbon Actif">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Vivacos Dentifrice</h3>
+        <h3>Vivacos - Dentifrice Charbon</h3>
         <p class="description">Charbon Actif Naturel - 100 g</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,00 € <small>HT</small></div>
@@ -3382,13 +4172,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 8 -->
-<article class="product" data-name="viola shampoing detox" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola shampoing detox" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ8.jpg" alt="Viola Shampoing Detox">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Viola Shampoing Detox</h3>
+        <h3>Viola - Shampoing Detox</h3>
         <p class="description">Anti-Oxydant - 350 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,60 € <small>HT</small></div>
@@ -3397,13 +4191,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 9 -->
-<article class="product" data-name="viola apres shampoing detox" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola apres shampoing detox" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ9.jpg" alt="Viola Après-Shampoing Detox">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Viola Après-Shampoing Detox</h3>
+        <h3>Viola - Après-Shampoing Detox</h3>
         <p class="description">Anti-Oxydant - 350 ml</p>
         <div class="colisage">Carton - 12 pièces</div>
         <div class="price">1,60 € <small>HT</small></div>
@@ -3412,13 +4210,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 10 -->
-<article class="product" data-name="viola masque capillaire detox" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola masque capillaire detox" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
     <div class="product-image">
         <img src="images/AZ10.PNG" alt="Viola Masque Capillaire Detox">
     </div>
     <div class="product-info">
         <span class="badge">NOUVEAUTÉ</span>
-        <h3>Viola Masque Capillaire Detox</h3>
+        <h3>Viola - Masque Capillaire Detox</h3>
         <p class="description">Anti-Oxydant - 350 ml</p>
         <div class="colisage">Carton - 6 pièces</div>
         <div class="price">1,90 € <small>HT</small></div>
@@ -3426,14 +4228,18 @@ footer p {
     </div>
 </article>
 <!-- PRODUIT 1 -->
-<article class="product" data-name="viola Shampoing Lissage Extrême" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola Shampoing Lissage Extrême" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/IMG_2261.jpg" alt="Viola Lissage Extrême Shampoing">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Viola Lissage Extrême Shampoing</h3>
-    <p class="description">Kératine Perfection - 350 ml</p>
+    <h3>Viola - Shampoing Kératine</h3>
+    <p class="description">Lissage Extrême Kératine Perfection - 350 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,60 € <small>HT</small></div>
     <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3441,14 +4247,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 2 -->
-<article class="product" data-name="viola Lissage Extrême Après-Shampoing" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola Lissage Extrême Après-Shampoing" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/IMG_2262.jpg" alt="Viola Lissage Extrême Après-Shampoing">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Viola Lissage Extrême Après-Shampoing</h3>
-    <p class="description">Kératine Perfection - 350 ml</p>
+    <h3>Viola - Après-Shampoing Kératine</h3>
+    <p class="description">Lissage Extrême Kératine Perfection - 350 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,60 € <small>HT</small></div>
     <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3456,14 +4266,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 3 -->
-<article class="product" data-name="viola Énergie+ Shampoing Revitalisant" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola Énergie+ Shampoing Revitalisant" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/IMG_2263.jpg" alt="Viola Énergie+ Shampoing Revitalisant">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Viola Énergie+ Shampoing Revitalisant</h3>
-    <p class="description">Multi Vitamines - 350 ml</p>
+    <h3>Viola - Shampoing Revitalisant</h3>
+    <p class="description">Énergie+ Multi Vitamines - 350 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,60 € <small>HT</small></div>
     <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3471,14 +4285,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 4 -->
-<article class="product" data-name="viola Énergie+ Après-Shampoing Revitalisant" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola Énergie+ Après-Shampoing Revitalisant" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/IMG_2264.jpg" alt="Viola Énergie+ Après-Shampoing Revitalisant">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Viola Énergie+ Après-Shampoing Revitalisant</h3>
-    <p class="description">Multi Vitamines - 350 ml</p>
+    <h3>Viola - Après-Shampoing Revitalisant</h3>
+    <p class="description">Énergie+ Multi Vitamines - 350 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,60 € <small>HT</small></div>
     <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3486,14 +4304,18 @@ footer p {
 </article>
 
 <!-- PRODUIT 5 -->
-<article class="product" data-name="viola Énergie+ Masque Capillaire" data-category="Cosmétique Nouveautés" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-name="viola Énergie+ Masque Capillaire" data-category="Cosmétique Nouveautés" 
+    data-added="2026-08-18" 
+    data-stock="oui"
+    data-promo="non"
+    data-promo-price="1.00">
   <div class="product-image">
     <img src="images/IMG_2265.jpg" alt="Viola Énergie+ Masque Capillaire">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Viola Énergie+ Masque Capillaire</h3>
-    <p class="description">Multi Vitamines - 350 ml</p>
+    <h3>Viola - Masque Capillaire Revitalisant</h3>
+    <p class="description">Énergie+ Multi Vitamines - 350 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,90 € <small>HT</small></div>
     <a class="whatsapp" href="#">Commander sur WhatsApp</a>
@@ -3501,13 +4323,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 6 -->
-<article class="product" data-category="Cosmétique Nouveautés" data-name="viola Infusion Lumière Shampoing" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-category="Cosmétique Nouveautés" data-name="viola Infusion Lumière Shampoing" 
+   data-added="2026-08-18" 
+   data-stock="oui" 
+   data-promo="non" 
+   data-promo-price="1.00">
   <div class="product-image">
     <img src="images/IMG_2266.jpg" alt="Viola Infusion Lumière Shampoing">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Viola Infusion Lumière Shampoing</h3>
+    <h3>Viola - Shampoing Infusion Lumière </h3>
     <p class="description">Perle & Protéine - 350 ml</p>
     <div class="colisage">Carton - 12 pièces</div>
     <div class="price">1,60 € <small>HT</small></div>
@@ -3516,13 +4342,17 @@ footer p {
 </article>
 
 <!-- PRODUIT 7 -->
-<article class="product" data-category="Cosmétique Nouveautés" data-name="viola Infusion Lumière Masque Capillaire" data-added="2026-08-18" data-stock="oui">
+<article class="product" data-category="Cosmétique Nouveautés" data-name="viola Infusion Lumière Masque Capillaire" 
+   data-added="2026-08-18"
+   data-stock="oui" 
+   data-promo="non" 
+   data-promo-price="1.00">
   <div class="product-image">
     <img src="images/IMG_2267.jpg" alt="Viola Infusion Lumière Masque Capillaire">
   </div>
   <div class="product-info">
     <span class="badge">NOUVEAUTÉ</span>
-    <h3>Viola Infusion Lumière Masque Capillaire</h3>
+    <h3>Viola - Masque Capillaire Infusion Lumière</h3>
     <p class="description">Perle & Protéine - 350 ml</p>
     <div class="colisage">Carton - 6 pièces</div>
     <div class="price">1,90 € <small>HT</small></div>
@@ -3530,16 +4360,16 @@ footer p {
   </div>
 </article>
 
-<footer>
+</div>
+</main>
 
+<footer>
     <p>
         <strong>MONA DISTRIBUTION</strong>
     </p>
 
-    <p>
-        Catalogue réservé aux professionnels
-    </p>
-
+    <p>Catalogue réservé aux professionnels</p>
+    <p>Commandes sous réserve de disponibilité des stocks.</p>
 </footer>
 
 <!-- ===== PANIER ===== -->
@@ -3671,6 +4501,24 @@ if (whatsappButton) {
   const categories = document.querySelectorAll(".category");
 
   let selectedCategory = "Tous";
+function trierProduitsAZ() {
+    const container = document.querySelector(".products");
+
+    const produitsTries = Array.from(products).sort((a, b) => {
+        const nomA = (a.dataset.name || "").trim();
+        const nomB = (b.dataset.name || "").trim();
+
+        return nomA.localeCompare(nomB, "fr", {
+            sensitivity: "base"
+        });
+    });
+
+    produitsTries.forEach(product => {
+        container.appendChild(product);
+    });
+}
+
+let selectedLetter = "";
 
   function filtrerProduits() {
     const value = search.value.toLowerCase().trim();
@@ -3682,20 +4530,55 @@ if (whatsappButton) {
       const correspondRecherche =
         value === "" || name.includes(value);
 
-     const correspondCategorie =
+const correspondLettre =
+    selectedLetter === "" ||
+    name.toUpperCase().startsWith(selectedLetter);
+
+    const dateAjout = new Date(product.dataset.added);
+const maintenant = new Date();
+const ageEnJours = (maintenant - dateAjout) / (1000 * 60 * 60 * 24);
+
+const estNouveaute =
+    product.dataset.added &&
+    ageEnJours >= 0 &&
+    ageEnJours <= 30;
+
+const correspondCategorie =
     selectedCategory === "Tous" ||
     (selectedCategory === "Promotion"
         ? product.dataset.promo === "oui"
-        : productCategory.includes(selectedCategory));
-      if (correspondRecherche && correspondCategorie) {
+        : selectedCategory === "Nouveautés"
+            ? estNouveaute
+            : productCategory.includes(selectedCategory));
+      if (correspondRecherche && correspondCategorie && correspondLettre) {
         product.style.display = "flex";
       } else {
         product.style.display = "none";
       }
     });
+
+    trierProduitsAZ();
   }
+trierProduitsAZ();
 
   /* RECHERCHE */
+
+  /* FILTRE ALPHABÉTIQUE */
+const alphabetButtons = document.querySelectorAll(".alphabet-filter button");
+
+alphabetButtons.forEach(button => {
+    button.addEventListener("click", function() {
+        selectedLetter = this.dataset.letter;
+
+        alphabetButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        filtrerProduits();
+    });
+});
   search.addEventListener("input", filtrerProduits);
 
   /* CATÉGORIES */
@@ -3708,6 +4591,20 @@ if (whatsappButton) {
 
       this.classList.add("active");
       selectedCategory = this.dataset.category;
+
+const titre = document.getElementById("products-title");
+
+const titresCategories = {
+    "Tous": "🌐 Nos Produits",
+    "Nouveautés": "🆕 Nouveautés",
+    "Promotion": "🔥 Promotions",
+    "Hygiène": "🧴 Hygiène",
+    "Cosmétique": "✨ Cosmétique",
+    "Alimentation": "🍪 Alimentation",
+    "Maison": "🏠 Maison & Bazar"
+};
+
+titre.textContent = titresCategories[selectedCategory] || selectedCategory.toUpperCase();
 
       filtrerProduits();
     });
@@ -4093,6 +4990,24 @@ checkoutButton.addEventListener("click", function () {
       lightbox.classList.remove("active");
     }
   });
+
+  const alphabetFilter = document.querySelector(".alphabet-filter");
+
+function updateAlphabetArrows() {
+    const atStart = alphabetFilter.scrollLeft <= 2;
+    const atEnd =
+        alphabetFilter.scrollLeft + alphabetFilter.clientWidth >=
+        alphabetFilter.scrollWidth - 2;
+
+    alphabetFilter.classList.toggle("at-start", atStart);
+    alphabetFilter.classList.toggle("at-end", atEnd);
+}
+
+alphabetFilter.addEventListener("scroll", updateAlphabetArrows);
+window.addEventListener("resize", updateAlphabetArrows);
+
+updateAlphabetArrows();
+
 </script>
 
 </body>
