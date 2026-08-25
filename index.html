@@ -7,7 +7,7 @@
 <title>Mona Distribution | Catalogue</title>
 
 <style>
-    
+
     .cart-plus,
     .cart-minus {
     touch-action: manipulation;
@@ -4708,7 +4708,11 @@ if (/bo[iî]te/i.test(colisageText)) {
         }
     });
 
-    plus.addEventListener("click", function () {
+    plus.style.touchAction = "manipulation"; 
+    
+    plus.addEventListener("click", function (event) {
+        event.preventDefault();
+
     let qty = parseInt(number.value) || 1;
 
     if (qty < 100) {
