@@ -35,6 +35,12 @@
     cursor: pointer;
 }
 
+.alphabet-filter button.active {
+    font-weight: 800;
+    background: #f2f2f2;
+    border: 2px solid #16a34a;
+}
+
 .alphabet-filter button:hover {
     background: #f2f2f2;
 }
@@ -4523,6 +4529,8 @@ let selectedLetter = "";
   function filtrerProduits() {
     const value = search.value.toLowerCase().trim();
 
+    let nombreProduitsVisibles = 0;
+
     products.forEach(product => {
       const name = (product.dataset.name || "").toLowerCase();
       const productCategory = product.dataset.category || "";
@@ -4552,10 +4560,30 @@ const correspondCategorie =
             : productCategory.includes(selectedCategory));
       if (correspondRecherche && correspondCategorie && correspondLettre) {
         product.style.display = "flex";
+        nombreProduitsVisibles++;
       } else {
         product.style.display = "none";
       }
     });
+
+    let messageVide = document.getElementById("no-products-message");
+
+if (!messageVide) {
+    messageVide = document.createElement("p");
+    messageVide.id = "no-products-message";
+    messageVide.style.textAlign = "center";
+    messageVide.style.fontWeight = "600";
+    messageVide.style.padding = "30px 10px";
+    messageVide.style.width = "100%";
+    document.querySelector(".products").appendChild(messageVide);
+}
+
+if (nombreProduitsVisibles === 0 && selectedLetter !== "") {
+    messageVide.textContent = `Aucun produit disponible (« ${selectedLetter} »)`;
+    messageVide.style.display = "block";
+} else {
+    messageVide.style.display = "none";
+}
 
     trierProduitsAZ();
   }
@@ -4591,6 +4619,12 @@ alphabetButtons.forEach(button => {
 
       this.classList.add("active");
       selectedCategory = this.dataset.category;
+
+selectedLetter = "";
+
+alphabetButtons.forEach(btn => {
+    btn.classList.remove("active");
+});
 
 const titre = document.getElementById("products-title");
 
