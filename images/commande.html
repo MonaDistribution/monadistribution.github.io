@@ -361,6 +361,20 @@ message += `${lineTotal.toFixed(2).replace(".", ",")} € HT\n\n`;
     if (comment) {
         message += `\n Commentaire : ${comment}\n`;
     }
+
+    // ===== MINIMUM DE COMMANDE : 500 € HT =====
+if (totalCommande < 500) {
+    const montantManquant = 500 - totalCommande;
+
+    alert(
+        `⚠️ Minimum de commande : 500 € HT.\n\n` +
+        `Votre commande actuelle est de ${totalCommande.toFixed(2).replace(".", ",")} € HT.\n` +
+        `Il vous manque ${montantManquant.toFixed(2).replace(".", ",")} € HT pour pouvoir valider votre commande.`
+    );
+
+    return;
+}
+
 // ===== SAUVEGARDE DU BON DE COMMANDE =====
 
 const { data: numeroData, error: numeroError } = await supabaseClient
