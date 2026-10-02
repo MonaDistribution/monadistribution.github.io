@@ -870,12 +870,16 @@ footer p {
   </button>
 
   <button class="category" data-category="Alimentation">
-    🍪 Alimentation
+    🍪 Alimentaire
   </button>
 
   <button class="category" data-category="Maison">
     🏠 Maison & Bazar
   </button>
+
+  <button class="category" data-category="Disponibles">
+  ✅ Disponibles
+</button>
 
 </div>
 </div>
@@ -4887,7 +4891,9 @@ const correspondCategorie =
         ? product.dataset.promo === "oui"
         : selectedCategory === "Nouveautés"
             ? estNouveaute
-            : productCategory.includes(selectedCategory));
+            : selectedCategory === "Disponibles"
+                ? product.dataset.stock === "oui"
+                : productCategory.includes(selectedCategory));
       if (correspondRecherche && correspondCategorie && correspondLettre) {
         product.style.display = "flex";
         nombreProduitsVisibles++;
